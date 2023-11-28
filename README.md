@@ -17,7 +17,7 @@ This repository hosts docker compose files for setting up playground for Consent
 2. Execute `make down`. This stops the playground without deleting the data (volumes).
 3. Execute `make clean`. This stops the playground along with deleting the data (volumes).
 
-Note: To delete any conflicting containers or volumes before running, execute `make destroy`. This will delete all the docker containers and volumes in your machine.
+***Note:** To delete any conflicting containers or volumes before running, execute `make destroy`. This will delete all the docker containers and volumes in your machine.*
 
 The servers are up and running. They are accessible at below addresses:
 
@@ -33,7 +33,9 @@ The servers are up and running. They are accessible at below addresses:
 2. Execute `make build-test`. This builds the docker image with BDD tests and configuration.
 3. Execute `make run-test`. This runs the BDD tests against the test environment.
 
-Note: Test environment can be setup by executing `test-entrypoint.sh` file manually.
+***Note:***
+- *Test environment can be setup by executing `test-entrypoint.sh` file manually.*
+- *Test environment does not persist any of the data.*
 
 ## Contributing
 
