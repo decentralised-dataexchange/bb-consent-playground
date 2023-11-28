@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://api.bb-consent.dev/v2",
+  "appVersion": "2023.11.6",
+  "clientId": "igrant-ios-app"
+}

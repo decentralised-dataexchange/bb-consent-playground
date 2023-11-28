@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://api.bb-consent.dev/v2",
+  "redirectUrl": "https://privacy.bb-consent.dev/login",
+  "clientId": "igrant-ios-app"
+}

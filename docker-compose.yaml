@@ -1,0 +1,106 @@
+version: "3.7"
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./../resources/ssl/development/scripts/docker-proxy/certs:/etc/nginx/certs:ro
+      - ./../resources/ssl/development/scripts/docker-proxy/vhost.d:/etc/nginx/vhost.d:ro
+      - ./../resources/ssl/development/scripts/docker-proxy/proxy.conf:/etc/nginx/proxy.conf:ro
+
+  mongo:
+    image: bitnami/mongodb:7.0
+    container_name: mongo
+    environment:
+      - MONGODB_DATABASE=bb-consent-consentdb
+      - MONGODB_USERNAME=bb-consent-user
+      - MONGODB_PASSWORD=bb-consent-password
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - mongo:/bitnami/mongodb
+    ports:
+      - "27018:27017"
+    depends_on:
+      - nginx-proxy
+  
+  postgresql:
+    image: bitnami/postgresql:14.10.0
+    container_name: postgresql
+    environment:
+      - POSTGRESQL_USERNAME=bn_keycloak
+      - POSTGRESQL_PASSWORD=bn_keycloak
+      - POSTGRESQL_DATABASE=bitnami_keycloak
+    volumes:
+      - postgresql:/bitnami/postgresql
+    ports:
+      - "5432:5432"
+    depends_on:
+      - nginx-proxy
+  
+  keycloak:
+    image: docker.io/bitnami/keycloak:22.0.2-debian-11-r0
+    container_name: keycloak
+    restart: always
+    environment:
+      - KEYCLOAK_ADMIN_USER=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_DATABASE_HOST=postgresql
+      - KEYCLOAK_DATABASE_PASSWORD=bn_keycloak
+      - KEYCLOAK_HTTP_RELATIVE_PATH=/
+      - KEYCLOAK_ENABLE_HTTPS=false
+      - KEYCLOAK_ENABLE_STATISTICS=false
+      - KEYCLOAK_HTTP_PORT=8080
+      - KEYCLOAK_LOG_OUTPUT=default
+      - KEYCLOAK_PRODUCTION=false
+      - KEYCLOAK_PROXY=edge
+    ports:
+      - "9090:8080"
+    depends_on:
+      - postgresql
+      - nginx-proxy
+  
+  api:
+    image: igrantio/bb-consent-api:2023.11.15
+    container_name: api
+    restart: always
+    environment:
+      - VIRTUAL_HOST=api.bb-consent.dev
+    volumes:
+      - ./api.json:/opt/bb-consent/api/config/config-production.json:ro
+    depends_on:
+      - mongo
+      - keycloak
+      - nginx-proxy
+
+  admin-dashboard:
+    image: igrantio/bb-consent-admin-dashboard:2023.11.6
+    container_name: admin-dashboard
+    restart: always
+    environment:
+      - VIRTUAL_HOST=dashboard.bb-consent.dev
+    volumes:
+      - ./admin-dashboard.json:/usr/share/nginx/html/config/config.json:ro
+    depends_on:
+      - api
+      - nginx-proxy
+
+  privacy-dashboard:
+    image: igrantio/bb-consent-privacy-dashboard:2023.11.6
+    container_name: privacy-dashboard
+    restart: always
+    environment:
+      - VIRTUAL_HOST=privacy.bb-consent.dev
+    volumes:
+      - ./privacy-dashboard.json:/usr/share/nginx/html/config/config.json:ro
+    depends_on:
+      - api
+      - nginx-proxy
+
+volumes:
+  mongo:
+  postgresql:
