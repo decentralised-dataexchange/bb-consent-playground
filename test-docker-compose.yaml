@@ -44,11 +44,19 @@ services:
     restart: always
     volumes:
       - ./api.json:/opt/bb-consent/api/config/config-production.json:ro
-    ports:
-      - "3333:80"
     depends_on:
       - mongo
       - keycloak
+  
+  caddy:
+    image: caddy:2.7
+    container_name: caddy
+    ports:
+      - "3333:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - api
 
 volumes:
   mongo:

@@ -1,7 +1,7 @@
 #!/bin/bash
 set +e
 
-docker-compose -f test-docker-compose.yaml up mongo postgresql keycloak api -d
+docker-compose -f test-docker-compose.yaml up mongo postgresql keycloak api caddy -d
 
 CONTAINER_API="api"
 TIMEOUT=120  # Timeout value in seconds
