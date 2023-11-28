@@ -6,4 +6,15 @@ http://localhost:80 {
 		X-Frame-Options "DENY"
 		Referrer-Policy "no-referrer-when-downgrade"
 	}
+
+	# Conditionally add headers based on a specific path
+	@conditionallyAddHeadersForPath path_regexp ^/v2/onboard/admin/login
+	header @conditionallyAddHeadersForPath {
+		X-Joke "Special-Path-Value"
+	}
+
+	# Log all requests to stdout for Docker logs
+	log {
+		output stdout
+	}
 }

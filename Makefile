@@ -18,11 +18,17 @@ destroy: ## Delete all containers and volumes
 run: ## Run the playground
 	docker-compose up -d
 
-run-test: ## Run the playground
-	docker-compose up nginx-proxy mongo postgresql keycloak api -d
+setup-test: ## Setup test environment
+	./test-entrypoint.sh
 
 down: ## Stop the playground
 	docker-compose down
 
 clean: ## Stop and destroy volumes
 	docker-compose down -v
+
+build-test: ## Build behave image
+	docker build --platform=linux/amd64 -t igrantio/consent-bb-test-runner:dev -f Dockerfile .
+
+run-test: ## Run BDD test
+	docker run --network=bb-consent-playground_custom_network igrantio/consent-bb-test-runner:dev

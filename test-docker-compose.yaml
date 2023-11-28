@@ -10,6 +10,8 @@ services:
       - MONGODB_USERNAME=bb-consent-user
       - MONGODB_PASSWORD=bb-consent-password
       - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - custom_network
 
   postgresql:
     image: bitnami/postgresql:14.10.0
@@ -18,6 +20,8 @@ services:
       - POSTGRESQL_USERNAME=bn_keycloak
       - POSTGRESQL_PASSWORD=bn_keycloak
       - POSTGRESQL_DATABASE=bitnami_keycloak
+    networks:
+      - custom_network
 
   keycloak:
     image: docker.io/bitnami/keycloak:22.0.2-debian-11-r0
@@ -37,6 +41,8 @@ services:
       - KEYCLOAK_PROXY=edge
     depends_on:
       - postgresql
+    networks:
+      - custom_network
 
   api:
     image: igrantio/bb-consent-api:2023.11.15
@@ -47,6 +53,8 @@ services:
     depends_on:
       - mongo
       - keycloak
+    networks:
+      - custom_network
   
   caddy:
     image: caddy:2.7
@@ -57,7 +65,13 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - api
+    networks:
+      - custom_network
 
 volumes:
   mongo:
   postgresql:
+
+networks:
+  custom_network:
+    driver: bridge
