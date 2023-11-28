@@ -9,9 +9,9 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./../resources/ssl/development/scripts/docker-proxy/certs:/etc/nginx/certs:ro
-      - ./../resources/ssl/development/scripts/docker-proxy/vhost.d:/etc/nginx/vhost.d:ro
-      - ./../resources/ssl/development/scripts/docker-proxy/proxy.conf:/etc/nginx/proxy.conf:ro
+      - ./resources/ssl/development/scripts/docker-proxy/certs:/etc/nginx/certs:ro
+      - ./resources/ssl/development/scripts/docker-proxy/vhost.d:/etc/nginx/vhost.d:ro
+      - ./resources/ssl/development/scripts/docker-proxy/proxy.conf:/etc/nginx/proxy.conf:ro
 
   mongo:
     image: bitnami/mongodb:7.0
