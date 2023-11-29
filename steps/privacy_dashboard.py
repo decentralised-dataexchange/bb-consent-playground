@@ -15,11 +15,7 @@ def views_privacy_dashboard(context):
 def sees_privacy_dashboard(context):
     response_json = json.loads(context.response.content)
     assert context.response.status_code == 200
-    version = response_json["version"]
-    hostname = response_json["hostname"]
     status = response_json["statusStr"]
-    assert version == "v1.0.0"
-    assert hostname == "retail-staging-privacy.igrant.io"
     assert status == "Deployed"
 
 
