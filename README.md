@@ -13,6 +13,8 @@ This repository hosts docker compose files for setting up playground for Consent
 
 ## Steps to run playground
 
+After cloning this repo using `git clone git@github.com:decentralised-dataexchange/bb-consent-playground.git`in your local machine, `cd` into the folder `bb-consent-playground`. Follow the steps below:
+
 1. Execute `make run`. This sets up the necessary dependencies and configurations for running playground.
 2. Execute `make down`. This stops the playground without deleting the data (volumes).
 3. Execute `make clean`. This stops the playground along with deleting the data (volumes).
