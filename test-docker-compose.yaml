@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   mongo:
-    image: bitnami/mongodb:7.0
+    image: zcube/bitnami-compat-mongodb:6.0.5
     container_name: mongo
     environment:
       - MONGODB_DATABASE=bb-consent-consentdb
