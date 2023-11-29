@@ -4,7 +4,6 @@ services:
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
-    network_mode: host
     restart: always
     ports:
       - "443:443"
@@ -68,7 +67,6 @@ services:
   api:
     image: igrantio/bb-consent-api:2023.11.15
     container_name: api
-    network_mode: host
     restart: always
     environment:
       - VIRTUAL_HOST=api.bb-consent.dev
