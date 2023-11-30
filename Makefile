@@ -40,8 +40,11 @@ setup-dev-tests: ## Setup api, admin and privacy dashboard for development branc
 	git clone git@github.com:decentralised-dataexchange/bb-consent-api.git && \
 	git clone https://github.com/decentralised-dataexchange/bb-consent-admin-dashboard && \
 	git clone https://github.com/decentralised-dataexchange/bb-consent-privacy-dashboard
+	
+	@echo "Please enter the GPG passphrase when prompted:"
+	@gpg --decrypt api-dev-tests.json.gpg > api-dev-tests.json
 
-	cp api.json temp/bb-consent-api/resources/config/config-development.json
+	cp api-dev-tests.json temp/bb-consent-api/resources/config/config-development.json
 	cp admin-dashboard.json temp/bb-consent-admin-dashboard/public/config/config.json
 	cp privacy-dashboard.json temp/bb-consent-privacy-dashboard/public/config/config.json
 
