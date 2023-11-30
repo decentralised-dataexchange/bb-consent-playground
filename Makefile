@@ -32,3 +32,26 @@ build-test: ## Build behave image
 
 run-test: ## Run BDD test
 	docker run --network=bb-consent-playground_custom_network igrantio/consent-bb-test-runner:dev
+
+setup-dev-tests: ## Setup api, admin and privacy dashboard for development branch tests
+	sudo rm -rf temp && \
+	mkdir temp && \
+	cd temp && \
+	git clone git@github.com:decentralised-dataexchange/bb-consent-api.git && \
+	git clone https://github.com/decentralised-dataexchange/bb-consent-admin-dashboard && \
+	git clone https://github.com/decentralised-dataexchange/bb-consent-privacy-dashboard
+
+	cp api.json temp/bb-consent-api/resources/config/config-development.json
+	cp admin-dashboard.json temp/bb-consent-admin-dashboard/public/config/config.json
+	cp privacy-dashboard.json temp/bb-consent-privacy-dashboard/public/config/config.json
+
+run-dev-tests-api: destroy ## Run api for development branch tests
+	make -C temp/bb-consent-api setup api/build
+	./dev-keycloak-startup.sh
+	make -C temp/bb-consent-api api/run
+
+run-dev-tests-admin-dashboard: ## Run admin dashboard for development branch tests
+	make -C temp/bb-consent-admin-dashboard setup build run
+
+run-dev-tests-privacy-dashboard: ## Run admin dashboard for development branch tests
+	make -C temp/bb-consent-privacy-dashboard setup build run
