@@ -24,11 +24,13 @@ The other make commands could be used in case you wish to clean up your existing
 
 The servers are up and running. They are accessible at below addresses:
 
-| Name              | Server address                   |
-| ----------------- | -------------------------------- |
-| API               | https://api.bb-consent.dev       |
-| Admin dashboard   | https://dashboard.bb-consent.dev |
-| Privacy dashboard | https://privacy.bb-consent.dev   |
+| Name                   | Server address                   |
+| ---------------------- | -------------------------------- |
+| Consent BB API  Server | https://api.bb-consent.dev       |
+| Admin dashboard        | https://dashboard.bb-consent.dev |
+| Privacy dashboard      | https://privacy.bb-consent.dev   |
+
+Once the services are up and running you can proceed ahead trying out the usecases either manually. You can also execute APIs toawrds the API server.  
 
 ## Steps to run BDD tests
 
