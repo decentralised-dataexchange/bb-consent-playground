@@ -34,6 +34,8 @@ Once the services are up and running you can proceed ahead trying out the usecas
 
 ## Steps to run BDD tests
 
+This steps are to create a test environment to execute automated Behaviour Driven Development (BDD) tests on the consent BB API server. If you have run the playground earlier, please execute `make destroy` before proceeding with the steps below: 
+
 1. Execute `make setup-test`. This sets up the necessary dependencies and configurations for running tests.
 2. Execute `make build-test`. This builds the docker image with BDD tests and configuration.
 3. Execute `make run-test`. This runs the BDD tests against the test environment.
