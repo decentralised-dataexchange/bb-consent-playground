@@ -30,7 +30,10 @@ The servers are up and running. They are accessible at below addresses:
 | Admin dashboard        | https://dashboard.bb-consent.dev |
 | Privacy dashboard      | https://privacy.bb-consent.dev   |
 
-Once the services are up and running you can proceed ahead trying out the usecases either manually. You can also execute APIs toawrds the API server.  
+Once the services are up and running you can proceed ahead trying out the usecases either manually. You may also do the following:
+
+* Execute APIs toawrds the API server or [run the BB tests](#steps-to-run-bdd-tests) before release.
+* Get the data4diabtes and skatteverket data sharing demo environment up and running for manual demos. 
 
 ## Steps to run BDD tests
 
@@ -43,6 +46,24 @@ This steps are to create a test environment to execute automated Behaviour Drive
 ***Note:***
 - *Test environment can be setup by executing `test-entrypoint.sh` file manually.*
 - *Test environment does not persist any of the data.*
+
+## Steps to set up the demo envioronment (COMING SOON)
+
+### Setup the services
+
+Run the script provided in /demo folder. Once run, the servers are up and running. They are accessible at below addresses:
+
+| Name                              | Server address                       |
+| ----------------------------------| ------------------------------------ |
+| Consent BB API  Server            | https://api.bb-consent.dev           |
+| Admin dashboard (Data4Diabtes)    | https://d4d-dashboard.bb-consent.dev |
+| Privacy dashboard (Data4Diabetes) | https://d4d-privacy.bb-consent.dev   |
+| Admin dashboard (Skatteverket)    | https://sv-dashboard.bb-consent.dev  |
+| Privacy dashboard (Skatteverket)  | https://sv-privacy.bb-consent.dev    |
+
+### Connect your mobile app to the running instance
+
+Contact support@igrant.io to get the data4diabtes reference app and get instructions on how to connect to the local service. 
 
 ## Contributing
 
