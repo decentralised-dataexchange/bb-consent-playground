@@ -44,7 +44,7 @@ services:
       - custom_network
 
   api:
-    image: igrantio/bb-consent-api:2023.11.15
+    image: igrantio/bb-consent-api:2023.11.16
     container_name: api
     restart: always
     volumes:
