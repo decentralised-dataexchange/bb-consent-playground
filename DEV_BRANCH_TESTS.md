@@ -29,10 +29,10 @@ For setting up environment to test against development branch
 *Do update the smtp configuration in `api.json` before proceeding.*
 
 1. Clone this repo using `git clone git@github.com:decentralised-dataexchange/bb-consent-playground.git`in your local machine, `cd` into the folder `bb-consent-playground`.
-2. Execute `make setup-dev-tests`. This clones API, admin and privacy dashboard into a temp folder and configures it.
-3. Execute `make run-dev-tests-api`. This runs API server.
-4. In a new terminal window, execute `make run-dev-tests-admin-dashboard`. This runs admin dashboard.
-5. In a new terminal window, execute `make run-dev-tests-privacy-dashboard`. This runs privacy dashboard.
+2. Execute `make setup-dev`. This clones API, admin and privacy dashboard into a temp folder and configures it.
+3. Execute `make run-dev-api`. This runs API server.
+4. In a new terminal window, execute `make run-dev-admin-dashboard`. This runs admin dashboard.
+5. In a new terminal window, execute `make run-dev-privacy-dashboard`. This runs privacy dashboard.
 
 ***Note:** To delete any conflicting containers or volumes before running, execute `make destroy`. This will delete all the docker containers and volumes in your machine.*
 

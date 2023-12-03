@@ -1,0 +1,18 @@
+{
+  "individuals": [
+    {
+      "externalid": "",
+      "externalidtype": "",
+      "identityproviderid": "",
+      "name": "Katy",
+      "email": "katy@yopmail.com"
+    },
+    {
+      "externalid": "",
+      "externalidtype": "",
+      "identityproviderid": "",
+      "name": "John",
+      "email": "john@yopmail.com"
+    }
+  ]
+}

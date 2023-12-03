@@ -14,6 +14,7 @@ elapsed_time=0
 while [ $elapsed_time -lt $TIMEOUT ]; do
     if docker logs "$CONTAINER_API" 2>&1 | grep -q "Listening port 80"; then
         echo "Consent BB API started!"
+        docker-compose -f test-docker-compose.yaml up fixtures
         break
     else
         sleep $WAIT_INTERVAL

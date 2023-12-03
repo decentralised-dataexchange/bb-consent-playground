@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "load-initial-data"
+version = "0.1.0"
+description = "To load initial data to mongodb directly or by executing API endpoints in Consent Building Block"
+authors = ["George J Padayatti <george.padayatti@igrant.io>"]
+license = "Apache"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pymongo = "^4.6.0"
+python-keycloak = "^3.7.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

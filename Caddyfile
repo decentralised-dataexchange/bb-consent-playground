@@ -1,3 +1,7 @@
+{
+	admin 0.0.0.0:2019
+}
+
 http://localhost:80 {
 	reverse_proxy api:80
 	header / {
@@ -5,12 +9,6 @@ http://localhost:80 {
 		X-Content-Type-Options "nosniff"
 		X-Frame-Options "DENY"
 		Referrer-Policy "no-referrer-when-downgrade"
-	}
-
-	# Conditionally add headers based on a specific path
-	@conditionallyAddHeadersForPath path_regexp ^/v2/onboard/admin/login
-	header @conditionallyAddHeadersForPath {
-		X-Joke "Special-Path-Value"
 	}
 
 	# Log all requests to stdout for Docker logs

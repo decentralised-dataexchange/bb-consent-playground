@@ -16,7 +16,7 @@ destroy: ## Delete all containers and volumes
 	@echo "Destroyed all containers and volumes"
 
 run: ## Run the playground
-	docker-compose up -d
+	docker-compose up nginx-proxy mongo postgresql keycloak api admin-dashboard privacy-dashboard caddy -d
 
 setup-test: ## Setup test environment
 	./test-entrypoint.sh
@@ -33,7 +33,7 @@ build-test: ## Build behave image
 run-test: ## Run BDD test
 	docker run --network=bb-consent-playground_custom_network igrantio/consent-bb-test-runner:dev
 
-setup-dev-tests: ## Setup api, admin and privacy dashboard for development branch tests
+setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \
 	mkdir temp && \
 	cd temp && \
@@ -48,13 +48,25 @@ setup-dev-tests: ## Setup api, admin and privacy dashboard for development branc
 	cp admin-dashboard.json temp/bb-consent-admin-dashboard/public/config/config.json
 	cp privacy-dashboard.json temp/bb-consent-privacy-dashboard/public/config/config.json
 
-run-dev-tests-api: destroy ## Run api for development branch tests
+run-dev-api: destroy ## Run api for development branch tests
 	make -C temp/bb-consent-api setup api/build
 	./dev-keycloak-startup.sh
 	make -C temp/bb-consent-api api/run
 
-run-dev-tests-admin-dashboard: ## Run admin dashboard for development branch tests
+run-dev-admin-dashboard: ## Run admin dashboard for development branch tests
 	make -C temp/bb-consent-admin-dashboard setup build run
 
-run-dev-tests-privacy-dashboard: ## Run admin dashboard for development branch tests
+run-dev-privacy-dashboard: ## Run admin dashboard for development branch tests
 	make -C temp/bb-consent-privacy-dashboard setup build run
+
+build-fixtures: ## Build fixtures docker image
+	docker build --platform=linux/amd64 -t igrantio/consent-bb-fixtures:2023.12.1 -f ./fixtures/Dockerfile ./fixtures
+
+publish-fixtures: ## Publish fixtures docker image to docker hub
+	docker push igrantio/consent-bb-fixtures:2023.12.1
+
+run-fixtures: ## Load fixtures
+	docker-compose up fixtures
+
+run-test-fixtures: ## Load fixtures in to text environment
+	docker-compose -f test-docker-compose.yaml up fixtures
