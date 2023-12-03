@@ -19,7 +19,7 @@ run: ## Run the playground
 	docker-compose up nginx-proxy mongo postgresql keycloak api admin-dashboard privacy-dashboard caddy -d
 
 setup-test: ## Setup test environment
-	./test-entrypoint.sh
+	cd test && ./test-entrypoint.sh
 
 down: ## Stop the playground
 	docker-compose down
@@ -31,7 +31,7 @@ build-test: ## Build behave image
 	docker build --platform=linux/amd64 -t igrantio/consent-bb-test-runner:dev -f Dockerfile .
 
 run-test: ## Run BDD test
-	docker run --network=bb-consent-playground_custom_network igrantio/consent-bb-test-runner:dev
+	docker run --network=test_custom_network igrantio/consent-bb-test-runner:dev
 
 setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \

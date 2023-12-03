@@ -1,5 +1,5 @@
 <h1 align="center">
-    Development branch tests
+    Consent BB tests
 </h1>
 
 <p align="center">
@@ -24,27 +24,17 @@ For setting up environment to test against development branch
 - docker: `>=23.0.3`
 - docker-compose: `>=2.6.1`
 
-## Steps to perform manual tests in development branch
+## Steps to run BDD tests
 
-*Do update the smtp configuration in `api.json` before proceeding.*
+This steps are to create a test environment to execute automated Behaviour Driven Development (BDD) tests on the consent BB API server. If you have run the playground earlier, please execute `make destroy` before proceeding with the steps below: 
 
-1. Clone this repo using `git clone git@github.com:decentralised-dataexchange/bb-consent-playground.git`in your local machine, `cd` into the folder `bb-consent-playground`.
-2. Execute `make setup-dev`. This clones API, admin and privacy dashboard into a temp folder and configures it.
-3. Execute `make run-dev-api`. This runs API server.
-4. In a new terminal window, execute `make run-dev-admin-dashboard`. This runs admin dashboard.
-5. In a new terminal window, execute `make run-dev-privacy-dashboard`. This runs privacy dashboard.
+1. Execute `make setup-test`. This sets up the necessary dependencies and configurations for running tests.
+2. Execute `make build-test`. This builds the docker image with BDD tests and configuration.
+3. Execute `make run-test`. This runs the BDD tests against the test environment.
 
-***Note:** To delete any conflicting containers or volumes before running, execute `make destroy`. This will delete all the docker containers and volumes in your machine.*
-
-The servers are up and running. They are accessible at below addresses:
-
-| Name                   | Server address                   |
-| ---------------------- | -------------------------------- |
-| Consent BB API  Server | https://api.bb-consent.dev       |
-| Admin dashboard        | https://dashboard.bb-consent.dev |
-| Privacy dashboard      | https://privacy.bb-consent.dev   |
-
-Once the services are up and running you can proceed ahead trying out the usecases manually.
+***Note:***
+- *Test environment can be setup by executing `test-entrypoint.sh` file manually.*
+- *Test environment does not persist any of the data.*
 
 ## Contributing
 

@@ -57,7 +57,7 @@ This steps are to create a test environment to execute automated Behaviour Drive
 3. Execute `make run-test`. This runs the BDD tests against the test environment.
 
 ***Note:***
-- *Test environment can be setup by executing `test-entrypoint.sh` file manually.*
+- *Test environment can be setup by executing `./test/test-entrypoint.sh` file manually.*
 - *Test environment does not persist any of the data.*
 
 ## Steps to set up the demo envioronment (COMING SOON)
