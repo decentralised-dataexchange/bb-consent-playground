@@ -3,6 +3,7 @@
 }
 
 http://localhost:80 {
+	rewrite * /v2{uri}
 	reverse_proxy api:80
 	header / {
 		Strict-Transport-Security "max-age=31536000;"

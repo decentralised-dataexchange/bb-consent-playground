@@ -120,15 +120,15 @@ def update_caddy_configuration(org_admin_token, individual_token):
             }
         ],
         "match": [
-            {"path": ["/v2/config/*"]},
-            {"path": ["/v2/audit/*"]},
-            {"path": ["/v2/onboard/admin"]},
-            {"path": ["/v2/onboard/admin/avatarimage"]},
-            {"path": ["/v2/onboard/password/reset"]},
-            {"path": ["/v2/onboard/organisation"]},
-            {"path": ["/v2/onboard/organisation/coverimage"]},
-            {"path": ["/v2/onboard/organisation/logoimage"]},
-            {"path": ["/v2/onboard/status"]},
+            {"path": ["/config/*"]},
+            {"path": ["/audit/*"]},
+            {"path": ["/onboard/admin"]},
+            {"path": ["/onboard/admin/avatarimage"]},
+            {"path": ["/onboard/password/reset"]},
+            {"path": ["/onboard/organisation"]},
+            {"path": ["/onboard/organisation/coverimage"]},
+            {"path": ["/onboard/organisation/logoimage"]},
+            {"path": ["/onboard/status"]},
         ],
     }
 
@@ -143,7 +143,7 @@ def update_caddy_configuration(org_admin_token, individual_token):
                 "request": {"set": {"Authorization": [f"Bearer {individual_token}"]}},
             }
         ],
-        "match": [{"path": ["/v2/service/*"]}],
+        "match": [{"path": ["/service/*"]}],
     }
 
     # Send a request to Caddy API to update the configuration
