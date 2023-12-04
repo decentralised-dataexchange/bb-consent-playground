@@ -26,7 +26,7 @@ For setting up environment to test against development branch
 
 ## Steps to perform manual tests in development branch
 
-*Do update the smtp configuration in `api.json` before proceeding.*
+*Do update the smtp configuration in `api.json` before proceeding. (Only if necessary)*
 
 1. Clone this repo using `git clone git@github.com:decentralised-dataexchange/bb-consent-playground.git`in your local machine, `cd` into the folder `bb-consent-playground`.
 2. Execute `make setup-dev`. This clones API, admin and privacy dashboard into a temp folder and configures it.
