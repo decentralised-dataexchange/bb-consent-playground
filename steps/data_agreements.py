@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin creates global policy configuration")
@@ -8,12 +9,12 @@ def create_policy(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/policies"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
     response_json = json.loads(context.response.content)
     policy_id = response_json["policies"][0]["id"]
     url = base_url + "/config/policy/" + policy_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     data = {
         "policy": {
             "name": "New Policy",
@@ -29,7 +30,7 @@ def create_policy(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/policy"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -59,7 +60,7 @@ def update_policy(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/policy/" + policy_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -116,7 +117,7 @@ def create_data_agreement(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreement"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -135,7 +136,7 @@ def read_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.config.userdata.data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -193,7 +194,7 @@ def update_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.config.userdata.data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -208,7 +209,7 @@ def delete_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.config.userdata.data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -265,7 +266,7 @@ def create_draft_data_agreement(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreement"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -327,7 +328,7 @@ def create_publish_data_agreement(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreement"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -351,7 +352,7 @@ def list_data_agreements(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -366,7 +367,7 @@ def draft_data_agreements(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"lifecycle": "draft"}
     url = base_url + "/config/data-agreements"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -381,7 +382,7 @@ def published_data_agreements(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"lifecycle": "complete"}
     url = base_url + "/config/data-agreements"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -447,7 +448,7 @@ def update_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -481,7 +482,7 @@ def cleanup_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.config.userdata.published_data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     data_agreement_id = context.config.userdata.draft_data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)

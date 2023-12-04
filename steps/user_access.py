@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin creates an identity provider configuration")
@@ -8,12 +9,12 @@ def create_idp(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/idp/open-ids"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     response_json = json.loads(response.content)
     if len(response_json["idps"]) > 0:
         idp_id = response_json["idps"][0]["id"]
         url = base_url + "/config/idp/open-id/" + idp_id
-        response = requests.delete(url, verify=False, headers=headers)
+        response = requests.delete(url + "/", verify=False, headers=headers)
     data = {
         "idp": {
             "issuerUrl": "http://keycloak:8080/realms/3pp-application",
@@ -30,7 +31,7 @@ def create_idp(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/idp/open-id"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -48,7 +49,7 @@ def read_idp(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     idp_id = context.config.userdata.idp_id
     url = base_url + "/config/idp/open-id/" + idp_id
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -76,7 +77,7 @@ def updates_idp(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     idp_id = context.config.userdata.idp_id
     url = base_url + "/config/idp/open-id/" + idp_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -91,7 +92,7 @@ def deletes_idp(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     idp_id = context.config.userdata.idp_id
     url = base_url + "/config/idp/open-id/" + idp_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -113,7 +114,7 @@ def bulk_onboard_of_individuals(context):
         "individuals": ("bulk_adding_of_individuals.csv", open(csv_file_path, "rb")),
     }
     url = base_url + "/config/individual/upload"
-    response = requests.post(url, files=files, verify=False, headers=headers)
+    response = requests.post(url + "/", files=files, verify=False, headers=headers)
     context.response = response
 
 

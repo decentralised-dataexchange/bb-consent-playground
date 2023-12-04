@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @given("an organization admin for Data4Diabetes organization")
@@ -18,7 +19,7 @@ def step_impl(context):
         "password": password,
     }
     url = base_url + "/onboard/admin/login"
-    response = requests.post(url, json=data,verify=False)
+    response = requests.post(url + "/", json=data,verify=False)
     context.response = response
 
 

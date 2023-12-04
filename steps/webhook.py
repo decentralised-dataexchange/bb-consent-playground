@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin views the list of webhook endpoints")
@@ -8,7 +9,7 @@ def list_of_webhook_endpoints(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/webhooks"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -32,7 +33,7 @@ def creates_webhook_endpoint(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/webhook"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -60,7 +61,7 @@ def update_webhook_endpoint(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     webhook_id = context.config.userdata.webhook_id
     url = base_url + "/config/webhook/" + webhook_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -75,7 +76,7 @@ def delete_webhook_endpoint(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     webhook_id = context.config.userdata.webhook_id
     url = base_url + "/config/webhook/" + webhook_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     context.response = response
 
 

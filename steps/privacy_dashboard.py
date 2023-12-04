@@ -1,13 +1,15 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
+
 
 @when("the admin views the deployed privacy dashboard information")
 def views_privacy_dashboard(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/privacy-dashboard"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -29,7 +31,7 @@ def step_impl(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/privacy-dashboard"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 

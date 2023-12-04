@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin lists the data attributes as a table")
@@ -8,7 +9,7 @@ def list_data_attributes(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements/data-attributes"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
     response_json = json.loads(context.response.content)
 
@@ -33,7 +34,7 @@ def updates_data_attributes(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements/data-attribute/" + data_attribute_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -50,7 +51,7 @@ def list_all_data_attributes(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements/data-attributes"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
     response_json = json.loads(context.response.content)
 
@@ -68,7 +69,7 @@ def list_da_associated_with_data_source(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements/data-attributes"
     params = {"methodOfUse": "data_source"}
-    response = requests.get(url, verify=False, headers=headers,params=params)
+    response = requests.get(url + "/", verify=False, headers=headers,params=params)
     context.response = response
     
 
@@ -87,7 +88,7 @@ def list_da_associated_with_data_using_service(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreements/data-attributes"
     params = {"methodOfUse": "data_using_service"}
-    response = requests.get(url, verify=False, headers=headers,params=params)
+    response = requests.get(url + "/", verify=False, headers=headers,params=params)
     context.response = response
 
 
@@ -138,7 +139,7 @@ def create_data_agreements(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreement"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
     response_json = json.loads(context.response.content)
     data_source_data_agreement_id = response_json["dataAgreement"]["id"]
@@ -181,7 +182,7 @@ def create_data_agreements(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/data-agreement"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
     response_json = json.loads(context.response.content)
     data_using_service_data_agreement_id = response_json["dataAgreement"]["id"]
@@ -194,7 +195,7 @@ def cleanup_data_agreement(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     data_agreement_id = context.config.userdata.data_source_data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)
     data_agreement_id = context.config.userdata.data_using_service_data_agreement_id
     url = base_url + "/config/data-agreement/" + data_agreement_id
-    response = requests.delete(url, verify=False, headers=headers)
+    response = requests.delete(url + "/", verify=False, headers=headers)

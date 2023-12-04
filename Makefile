@@ -60,13 +60,13 @@ run-dev-privacy-dashboard: ## Run admin dashboard for development branch tests
 	make -C temp/bb-consent-privacy-dashboard setup build run
 
 build-fixtures: ## Build fixtures docker image
-	docker build --platform=linux/amd64 -t igrantio/consent-bb-fixtures:2023.12.1 -f ./fixtures/Dockerfile ./fixtures
+	docker build --platform=linux/amd64 -t igrantio/consent-bb-fixtures:2023.12.2 -f ./fixtures/Dockerfile ./fixtures
 
 publish-fixtures: ## Publish fixtures docker image to docker hub
-	docker push igrantio/consent-bb-fixtures:2023.12.1
+	docker push igrantio/consent-bb-fixtures:2023.12.2
 
 run-fixtures: ## Load fixtures
 	docker-compose up fixtures
 
 run-test-fixtures: ## Load fixtures in to text environment
-	docker-compose -f test-docker-compose.yaml up fixtures
+	docker-compose -f test/test-docker-compose.yaml up fixtures

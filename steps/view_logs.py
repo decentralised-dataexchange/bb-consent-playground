@@ -1,13 +1,15 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
+
 
 @when("the admin views the list of admin logs")
 def list_admin_logs(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -21,7 +23,7 @@ def list_all_logs(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -36,7 +38,7 @@ def views_security_logs(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"logType": 1}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -51,7 +53,7 @@ def views_api_call_logs(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"logType": 2}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -66,7 +68,7 @@ def views_organisation_logs(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"logType": 3}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -81,7 +83,7 @@ def views_webhook_logs(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"logType": 5}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 
@@ -96,7 +98,7 @@ def views_end_user_logs(context):
     headers = {"Authorization": f"Bearer {context.access_token}"}
     params = {"logType": 4}
     url = base_url + "/audit/admin/logs"
-    response = requests.get(url, verify=False, headers=headers, params=params)
+    response = requests.get(url + "/", verify=False, headers=headers, params=params)
     context.response = response
 
 

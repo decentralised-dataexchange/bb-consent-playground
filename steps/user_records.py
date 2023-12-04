@@ -1,13 +1,15 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
+
 
 @when("the admin views the list of consent records")
 def list_consent_records(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/audit/consent-records"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -31,7 +33,7 @@ def view_consent_records(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/audit/consent-records"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 

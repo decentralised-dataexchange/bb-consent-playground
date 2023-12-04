@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @given("the admin is logged into the Admin dashboard")
@@ -13,7 +14,7 @@ def step_impl(context):
         "password": password,
     }
     url = base_url + "/onboard/admin/login"
-    response = requests.post(url, json=data, verify=False)
+    response = requests.post(url + "/", json=data, verify=False)
     response_json = json.loads(response.content)
     context.access_token = response_json["accessToken"]
 
@@ -32,7 +33,7 @@ def step_impl(context):
     }
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/onboard/organisation"
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     response_json = json.loads(response.content)
     context.response = response
 
@@ -57,7 +58,7 @@ def step_impl(context):
         "orgimage": ("Sports.jpg", open(logo_file_path, "rb")),
     }
     url = base_url + "/onboard/organisation/logoimage"
-    response = requests.post(url, files=files, verify=False, headers=headers)
+    response = requests.post(url + "/", files=files, verify=False, headers=headers)
     context.response_logo_image = response
 
     # update cover image
@@ -65,7 +66,7 @@ def step_impl(context):
         "orgimage": ("Default_Cover_Image.jpg", open(cover_image_file_path, "rb")),
     }
     url = base_url + "/onboard/organisation/coverimage"
-    response = requests.post(url, files=files, verify=False, headers=headers)
+    response = requests.post(url + "/", files=files, verify=False, headers=headers)
     context.response_cover_image = response
 
 

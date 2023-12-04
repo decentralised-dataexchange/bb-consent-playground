@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin updates the organization admin's avatar image")
@@ -15,7 +16,7 @@ def update_admin_avatar(context):
         "avatarimage": ("Sports.jpg", open(avatar_image_file_path, "rb")),
     }
     url = base_url + "/onboard/admin/avatarimage"
-    response = requests.put(url, files=files, verify=False, headers=headers)
+    response = requests.put(url + "/", files=files, verify=False, headers=headers)
     context.response = response
 
 
@@ -34,7 +35,7 @@ def update_admin_name(context):
     }
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/onboard/admin"
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -52,7 +53,7 @@ def reset_admin_password(context):
     data = {"currentPassword": "qwerty123", "newPassword": "qwerty1234"}
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/onboard/password/reset"
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -63,4 +64,4 @@ def is_admin_password_reseted(context):
     data = {"currentPassword": "qwerty1234", "newPassword": "qwerty123"}
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/onboard/password/reset"
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)

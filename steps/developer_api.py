@@ -1,6 +1,7 @@
-from behave import *
-import requests
 import json
+
+import requests
+from behave import *
 
 
 @when("the admin views the organization ID, admin user ID, and API base URL")
@@ -8,7 +9,7 @@ def view_organisation(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/onboard/organisation"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
@@ -23,7 +24,7 @@ def create_apikey(context):
     data = {"apiKey": {"name": "Service", "scopes": ["service"], "expiryInDays": 30}}
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/admin/apikey"
-    response = requests.post(url, json=data, verify=False, headers=headers)
+    response = requests.post(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -43,7 +44,7 @@ def update_apikey(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/admin/apikey/" + apikey_id
-    response = requests.put(url, json=data, verify=False, headers=headers)
+    response = requests.put(url + "/", json=data, verify=False, headers=headers)
     context.response = response
 
 
@@ -58,7 +59,7 @@ def views_apikeys(context):
     base_url = context.config.userdata.get("base_url")
     headers = {"Authorization": f"Bearer {context.access_token}"}
     url = base_url + "/config/admin/apikeys"
-    response = requests.get(url, verify=False, headers=headers)
+    response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
 
