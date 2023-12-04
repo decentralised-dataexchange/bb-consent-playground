@@ -16,7 +16,7 @@ destroy: ## Delete all containers and volumes
 	@echo "Destroyed all containers and volumes"
 
 run: ## Run the playground
-	docker-compose up nginx-proxy mongo postgresql keycloak api admin-dashboard privacy-dashboard caddy -d
+	docker-compose up nginx-proxy mongo postgresql keycloak api admin-dashboard privacy-dashboard -d
 
 setup-test: ## Setup test environment
 	cd test && ./test-entrypoint.sh

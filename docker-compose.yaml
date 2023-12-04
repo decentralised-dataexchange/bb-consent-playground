@@ -65,7 +65,7 @@ services:
       - nginx-proxy
 
   api:
-    image: igrantio/bb-consent-api:2023.11.16
+    image: igrantio/bb-consent-api:2023.11.17
     container_name: api
     restart: always
     environment:
@@ -76,30 +76,6 @@ services:
       - mongo
       - keycloak
       - nginx-proxy
-
-  caddy:
-    image: caddy:2.7
-    container_name: caddy
-    ports:
-      - "3333:80"
-      - "2019:2019"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-    environment:
-      - CADDY_API=1
-    depends_on:
-      - api
-
-  fixtures:
-    image: igrantio/consent-bb-fixtures:2023.12.1
-    container_name: fixtures
-    volumes:
-      - ./test-data.json:/app/data.json:ro
-    depends_on:
-      - api
-      - mongo
-      - keycloak
-      - caddy
 
   admin-dashboard:
     image: igrantio/bb-consent-admin-dashboard:2023.11.6

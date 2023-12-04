@@ -6,6 +6,7 @@
     "password": "bb-consent-password"
   },
   "ApplicationMode": "single-tenant",
+  "TestMode": true,
   "Organization": {
     "name": "Skatteverket",
     "location": "Sweden",
