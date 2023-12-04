@@ -1,7 +1,7 @@
 #!/bin/bash
 set +e
 
-API_URL="http://api:80/onboard/individual/login"
+API_URL="http://api:80/onboard/individual/login/"
 
 # Function to check if the API is up and running
 check_api() {

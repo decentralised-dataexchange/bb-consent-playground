@@ -47,6 +47,8 @@ services:
     image: igrantio/bb-consent-api:2023.11.17
     container_name: api
     restart: always
+    ports:
+      - "3334:80"
     volumes:
       - ./api.json:/opt/bb-consent/api/config/config-production.json:ro
     depends_on:
@@ -56,7 +58,7 @@ services:
       - custom_network
 
   caddy:
-    image: caddy:2.7
+    image: igrantio/bb-consent-caddy:2023.12.2
     container_name: caddy
     ports:
       - "3333:80"
@@ -70,7 +72,7 @@ services:
       - custom_network
 
   fixtures:
-    image: igrantio/consent-bb-fixtures:2023.12.2
+    image: igrantio/bb-consent-fixtures:2023.12.2
     container_name: fixtures
     volumes:
       - ./test-data.json:/app/data.json:ro

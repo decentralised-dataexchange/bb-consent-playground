@@ -28,10 +28,10 @@ clean: ## Stop and destroy volumes
 	docker-compose down -v
 
 build-test: ## Build behave image
-	docker build --platform=linux/amd64 -t igrantio/consent-bb-test-runner:dev -f Dockerfile .
+	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f Dockerfile .
 
 run-test: ## Run BDD test
-	docker run --network=test_custom_network igrantio/consent-bb-test-runner:dev
+	docker run --network=test_custom_network igrantio/bb-consent-test-runner:dev
 
 setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \
@@ -60,13 +60,19 @@ run-dev-privacy-dashboard: ## Run admin dashboard for development branch tests
 	make -C temp/bb-consent-privacy-dashboard setup build run
 
 build-fixtures: ## Build fixtures docker image
-	docker build --platform=linux/amd64 -t igrantio/consent-bb-fixtures:2023.12.2 -f ./fixtures/Dockerfile ./fixtures
+	docker build --platform=linux/amd64 -t igrantio/bb-consent-fixtures:2023.12.2 -f ./fixtures/Dockerfile ./fixtures
 
 publish-fixtures: ## Publish fixtures docker image to docker hub
-	docker push igrantio/consent-bb-fixtures:2023.12.2
+	docker push igrantio/bb-consent-fixtures:2023.12.2
 
 run-fixtures: ## Load fixtures
 	docker-compose up fixtures
 
 run-test-fixtures: ## Load fixtures in to text environment
 	docker-compose -f test/test-docker-compose.yaml up fixtures
+
+build-caddy: ## Build caddy docker image
+	docker build --platform=linux/amd64 -t igrantio/bb-consent-caddy:2023.12.2 -f ./test/Dockerfile_caddy ./test
+
+publish-caddy: ## Publish caddy docker image to docker hub
+	docker push igrantio/bb-consent-caddy:2023.12.2

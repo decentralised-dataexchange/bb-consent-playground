@@ -56,7 +56,7 @@ def get_admin_token(host, port, username, password, realm):
         "grant_type": "password",
     }
 
-    response = requests.post(url + "/", headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     return response.json()
 
 
@@ -66,7 +66,7 @@ def update_access_token_lifespan(host, port, realm, token):
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {token}"}
     data = '{"accessTokenLifespan":31536000,"ssoSessionMaxLifespan":31536000}'
 
-    requests.put(url + "/", headers=headers, data=data)
+    requests.put(url, headers=headers, data=data)
 
 
 def get_organisation_id(db):
@@ -90,7 +90,7 @@ def login_organisation_admin(host, port, username, password):
         "password": password,
     }
 
-    response = requests.post(url + "/", headers=headers, json=data)
+    response = requests.post(url, headers=headers, json=data)
     return response.json()
 
 
@@ -103,7 +103,7 @@ def login_individual(host, port, username, password):
         "password": password,
     }
 
-    response = requests.post(url + "/", headers=headers, json=data)
+    response = requests.post(url, headers=headers, json=data)
     return response.json()
 
 
@@ -133,7 +133,7 @@ def update_caddy_configuration(org_admin_token, individual_token):
     }
 
     # Send a request to Caddy API to update the configuration
-    requests.put(url + "/", json=payload)
+    requests.put(url, json=payload)
 
     # Caddy API request payload
     payload = {
@@ -147,7 +147,7 @@ def update_caddy_configuration(org_admin_token, individual_token):
     }
 
     # Send a request to Caddy API to update the configuration
-    requests.put(url + "/", json=payload)
+    requests.put(url, json=payload)
 
 
 def populate_individuals(db):

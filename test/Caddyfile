@@ -3,7 +3,32 @@
 }
 
 http://localhost:80 {
-	reverse_proxy api:80
+	@api {
+		path /*
+	}
+
+	route @api {
+		reverse_proxy @api {
+			to http://api:80
+		}
+		openapi {
+			spec /consent-openapi.yaml
+			log_error
+			check {
+				req_params req_body
+				# When we are ready to handle validation of the body:
+				# req_params req_body resp_body
+			}
+			validate_servers
+		}
+	}
+
+	handle_errors {
+		respond @api "Resource: {http.request.orig_uri}. Error: {openapi.error}" {openapi.status_code} {
+			close
+		}
+	}
+
 	header / {
 		Strict-Transport-Security "max-age=31536000;"
 		X-Content-Type-Options "nosniff"
@@ -14,5 +39,6 @@ http://localhost:80 {
 	# Log all requests to stdout for Docker logs
 	log {
 		output stdout
+		level DEBUG
 	}
 }
