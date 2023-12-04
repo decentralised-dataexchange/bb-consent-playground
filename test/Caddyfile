@@ -7,19 +7,21 @@ http://localhost:80 {
 		path /*
 	}
 
+	reverse_proxy @api {
+		to http://api:80
+	}
+
 	route @api {
-		reverse_proxy @api {
-			to http://api:80
-		}
 		openapi {
 			spec /consent-openapi.yaml
 			log_error
+			# fall_through
 			check {
 				req_params req_body
 				# When we are ready to handle validation of the body:
 				# req_params req_body resp_body
 			}
-			validate_servers
+			validate_servers false
 		}
 	}
 
