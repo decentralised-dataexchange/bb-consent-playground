@@ -2,7 +2,7 @@
 set +e
 
 CONTAINER_API="keycloak"
-TIMEOUT=120  # Timeout value in seconds
+TIMEOUT=600  # Timeout value in seconds
 WAIT_INTERVAL=1  # Interval to check
 
 echo "Waiting for Keycloak to start..."
