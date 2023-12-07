@@ -23,6 +23,8 @@ This repository hosts docker compose files for setting up playground for Consent
 
 - docker: `>=23.0.3`
 - docker-compose: `>=2.6.1`
+- jq: `>=1.6.0`
+- gpg: `>=2.2.0`
 
 ## Steps to run playground
 
