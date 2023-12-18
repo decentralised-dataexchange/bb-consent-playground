@@ -66,8 +66,8 @@ def add_data_agreement(context,active):
                     "description": "Age of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")

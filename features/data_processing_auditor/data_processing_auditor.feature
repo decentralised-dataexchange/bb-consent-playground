@@ -15,7 +15,7 @@ Feature: Audit Logging
 
   Scenario: View consents for audit
     When the admin clicks on the view icon
-    And views the data agreement
+    And views the consent records
     Then the admin should be able to view the consent records
 
   Scenario: Revision list 
