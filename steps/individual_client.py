@@ -13,6 +13,14 @@ def step_impl(context):
     individual_id = response_json["individuals"][0]["id"]
     context.individual_id = individual_id
 
+    if len(individual_id) < 1:
+        data = {"individual": {"name": "John"}}
+        url = base_url + "/service/individual"
+        response = requests.post(url + "/", json=data, verify=False, headers=headers)
+        response_json = json.loads(response.content)
+        individual_id = response_json["individual"]["id"]
+        context.individual_id = individual_id
+
     if not hasattr(context.config.userdata, 'apikey'):
         base_url = context.config.userdata.get("base_url")
         data = {"apiKey": {"name": "Service", "scopes": ["service"], "expiryInDays": 30}}
@@ -60,7 +68,6 @@ def step_impl(context):
 def step_impl(context):
     base_url = context.config.userdata.get("base_url")
     individual_id = context.individual_id
-    context.config.userdata.individual_id = individual_id
     headers = {"Authorization": f"ApiKey {context.config.userdata.apikey}","X-ConsentBB-IndividualId": individual_id}
     data_agreement_id = context.config.userdata.data_agreement_id
     url = base_url + "/service/individual/record/data-agreement/" + data_agreement_id
@@ -96,9 +103,12 @@ def step_impl(context):
     headers = {"Authorization": f"ApiKey {context.config.userdata.apikey}","X-ConsentBB-IndividualId": individual_id}
     data_agreement_id = context.config.userdata.data_agreement_id
     consent_record_id = context.config.userdata.consent_record_id
+    data = {
+        "optIn": False
+    }
     params = {"individualId": individual_id,"dataAgreementId":data_agreement_id}
     url = base_url + "/service/individual/record/consent-record/" + consent_record_id
-    response = requests.put(url + "/", verify=False, headers=headers,params=params)
+    response = requests.put(url + "/",json=data, verify=False, headers=headers,params=params)
     context.response = response
 
 
@@ -119,8 +129,9 @@ def step_impl(context):
 
 @then("the user can view all their actions")
 def step_impl(context):
-    assert context.response.status_code == 200
     cleanup_data_agreement(context)
+    assert context.response.status_code == 200
+    
 
 
 @when("the user modifies their consent")
@@ -194,8 +205,8 @@ def add_data_agreements(context):
                     "description": "Age of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -238,8 +249,8 @@ def add_data_agreements(context):
                     "description": "Name of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     url = base_url + "/config/data-agreement"

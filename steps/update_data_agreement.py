@@ -64,8 +64,8 @@ def step_impl(context):
                     "description": "Age of customer",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -134,8 +134,8 @@ def step_impl(context):
                     "description": "Age of customer",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -182,8 +182,8 @@ def step_impl(context):
                     "description": "Name of customer",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -233,8 +233,8 @@ def add_data_agreement(context):
                     "description": "Age of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")

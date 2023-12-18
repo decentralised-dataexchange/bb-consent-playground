@@ -75,8 +75,8 @@ def add_data_agreements(context):
                     "description": "Age of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -119,8 +119,8 @@ def add_data_agreements(context):
                     "description": "Name of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     url = base_url + "/config/data-agreement"

@@ -53,20 +53,34 @@ def step_impl(context):
     response = requests.get(url + "/", verify=False, headers=headers)
     context.response = response
 
+@when('views the consent records')
+def step_impl(context):
+    base_url = context.config.userdata.get("base_url")
+    headers = {"Authorization": f"Bearer {context.access_token}"}
+    url = base_url + "/audit/consent-records"
+    response = requests.get(url + "/", verify=False, headers=headers)
+    context.response = response
+
 
 @then('the admin should be able to view the consent records')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the admin should be able to view the consent records')
+    assert context.response.status_code == 200
 
 
 @when('views the revision of data agreement')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When views the revision of data agreement')
+    add_data_agreements(context)
+    base_url = context.config.userdata.get("base_url")
+    headers = {"Authorization": f"Bearer {context.access_token}"}
+    url = base_url + "/config/data-agreement/" + context.config.userdata.published_data_agreement_id + "/revisions"
+    response = requests.get(url + "/", verify=False, headers=headers)
+    context.response = response
 
 
 @then('the admin should be able to view the revision of the data agreement')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the admin should be able to view the revision of the data agreement')
+    cleanup_data_agreement(context)
+    assert context.response.status_code == 200
 
 def add_data_agreements(context):
     data = {
@@ -108,8 +122,8 @@ def add_data_agreements(context):
                     "description": "Age of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     base_url = context.config.userdata.get("base_url")
@@ -152,8 +166,8 @@ def add_data_agreements(context):
                     "description": "Name of person",
                     "sensitivity": False,
                     "category": "",
-                },
-            ],
+                }
+            ]
         }
     }
     url = base_url + "/config/data-agreement"
@@ -161,4 +175,13 @@ def add_data_agreements(context):
     response_json = json.loads(response.content)
     data_agreement_id = response_json["dataAgreement"]["id"]
     context.config.userdata.draft_data_agreement_id = data_agreement_id
+
+def cleanup_data_agreement(context):
+    base_url = context.config.userdata.get("base_url")
+    headers = {"Authorization": f"Bearer {context.access_token}"}
+    url = base_url + "/config/data-agreement/" + context.config.userdata.published_data_agreement_id
+    response = requests.delete(url + "/", verify=False, headers=headers)
+
+    url = base_url + "/config/data-agreement/" + context.config.userdata.draft_data_agreement_id
+    response = requests.delete(url + "/", verify=False, headers=headers)
 
