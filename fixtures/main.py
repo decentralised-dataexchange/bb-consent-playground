@@ -76,6 +76,20 @@ def get_organisation_id(db):
     return str(organisation["_id"])
 
 
+def get_organisation(db):
+    # Get organisation details
+    organisations_collection = db["organizations"]
+    organisation = organisations_collection.find_one()
+    return organisation
+
+
+def get_policy(db):
+    # Get policy details
+    policies_collection = db["policies"]
+    policy = policies_collection.find_one()
+    return policy
+
+
 def generate_object_id(year, month, day):
     # Generate object id
     return str(ObjectId.from_datetime(datetime(year, month, day)))
@@ -268,10 +282,200 @@ def populate_individuals(db):
         print(e)
 
 
+def populate_dataagreements(db):
+    try:
+        # Organisation details
+        organisation = get_organisation(db)
+        # Policy details
+        policy = get_policy(db)
+
+        dataagreements_collection = db["dataAgreements"]
+
+        # Populate dataagreements collection
+        seed_year = 2010
+        index = 0
+
+        for dataagreement in data["dataAgreements"]:
+            # dataagreement data
+
+            controller_id = str(organisation["_id"])
+            controller_url = organisation["eulaurl"]
+            controller_name = organisation["name"]
+
+            # Save data agreement to db
+            dataagreements_collection.insert_one(
+                {
+                    "_id": dataagreement.get(
+                        "id", generate_object_id(seed_year + index, 1, 1)
+                    ),
+                    "version": "1.0.0",
+                    "controllerid": controller_id,
+                    "controllerurl": controller_url,
+                    "controllername": controller_name,
+                    "policy": policy,
+                    "purpose": dataagreement.get("purpose", "Marketing and campaign"),
+                    "purposedescription": dataagreement.get("purposeDescription", ""),
+                    "lawfulbasis": dataagreement.get("lawfulBasis", "consent"),
+                    "methodofuse": dataagreement.get("dataUse", "data-source"),
+                    "dpiadate": dataagreement.get("dpiaDate", ""),
+                    "dpiasummaryurl": dataagreement.get("dpiaSummaryUrl", ""),
+                    "signature": {
+                        "id": "6595584498116604796173a4",
+                        "payload": "",
+                        "signature": "",
+                        "verificationmethod": "",
+                        "verificationpayload": "",
+                        "verificationpayloadhash": "",
+                        "verificationartifact": "",
+                        "verificationsignedby": "",
+                        "verificationsignedas": "",
+                        "verificationjwsheader": "",
+                        "timestamp": "",
+                        "signedwithoutobjectreference": False,
+                        "objecttype": "",
+                        "objectreference": "",
+                    },
+                    "active": dataagreement.get("active", True),
+                    "forgettable": dataagreement.get("forgettable", False),
+                    "compatiblewithversionid": dataagreement.get(
+                        "compatibleWithVersionId", ""
+                    ),
+                    "lifecycle": dataagreement.get("lifecycle", "complete"),
+                    "dataattributes": dataagreement.get("dataAttributes", []),
+                    "organisationid": controller_id,
+                    "isdeleted": False,
+                    "timestamp": dataagreement.get("timestamp", "2024-01-03T12:51:16Z"),
+                    "datause": dataagreement.get("dataUse", "data-source"),
+                    "dpia": dataagreement.get("dpia", ""),
+                    "compatiblewithversion": dataagreement.get(
+                        "compatibleWithVersion", ""
+                    ),
+                    "controller": {
+                        "id": controller_id,
+                        "name": controller_name,
+                        "url": controller_url,
+                    },
+                }
+            )
+
+            # Update test data
+            data["dataAgreements"][index] = {
+                "_id": dataagreement.get(
+                    "id", generate_object_id(seed_year + index, 1, 1)
+                ),
+                "version": "1.0.0",
+                "controllerid": controller_id,
+                "controllerurl": controller_url,
+                "controllername": controller_name,
+                "policy": policy,
+                "purpose": dataagreement.get("purpose", "Marketing and campaign"),
+                "purposedescription": dataagreement.get("purposeDescription", ""),
+                "lawfulbasis": dataagreement.get("lawfulBasis", "consent"),
+                "methodofuse": dataagreement.get("dataUse", "data-source"),
+                "active": dataagreement.get("active", True),
+                "forgettable": dataagreement.get("forgettable", False),
+                "lifecycle": dataagreement.get("lifecycle", "complete"),
+                "dataattributes": dataagreement.get("dataAttributes", []),
+                "datause": dataagreement.get("dataUse", "data-source"),
+                "dpia": dataagreement.get("dpia", ""),
+                "compatiblewithversion": dataagreement.get("compatibleWithVersion", ""),
+                "controller": {
+                    "id": controller_id,
+                    "name": controller_name,
+                    "url": controller_url,
+                },
+            }
+
+        index += 1
+    except Exception as e:
+        print(e)
+
+
+def populate_revisions(db):
+    try:
+        revisions_collection = db["revisions"]
+
+        # Populate revisions collection
+        seed_year = 2012
+        index = 0
+
+        for revision in data["revisions"]:
+            # revision data
+
+            # Save revision to db
+            revisions_collection.insert_one(
+                {
+                    "_id": revision.get(
+                        "id", generate_object_id(seed_year + index, 1, 1)
+                    ),
+                    "schemaname": revision.get("schemaName", "dataAgreement"),
+                    "objectid": revision.get("objectId", "1"),
+                    "signedwithoutobjectid": revision.get(
+                        "signedWithoutObjectId", False
+                    ),
+                    "timestamp": revision.get("timestamp", "2024-01-03T09:23:31Z"),
+                    "authorizedbyindividualid": revision.get(
+                        "authorizedByIndividualId", ""
+                    ),
+                    "authorizedbyotherid": revision.get("authorizedByOtherId", ""),
+                    "predecessorhash": revision.get("predecessorHash", ""),
+                    "predecessorsignature": revision.get("predecessorSignature", ""),
+                    "objectdata": revision.get("objectData", ""),
+                    "successorid": revision.get("successorId", ""),
+                    "serializedhash": revision.get("serializedHash", ""),
+                    "serializedsnapshot": revision.get("serializedSnapshot", ""),
+                }
+            )
+
+        index += 1
+    except Exception as e:
+        print(e)
+
+
+def update_organisation_id(db):
+    try:
+        # Get organisation id
+        organisations_collection = db["organizations"]
+        organisation = organisations_collection.find_one()
+        old_organisation_id = organisation["_id"]
+
+        # Delete organisation
+        organisations_collection.delete_one({"_id": organisation["_id"]})
+        # Update organisation id
+        organisation["_id"] = "1"
+        organisations_collection.insert_one(organisation)
+
+        # Update organisation id in policy
+        policies_collection = db["policies"]
+        policy = policies_collection.update_many(
+            {}, {"$set": {"organisationid": organisation["_id"]}}
+        )
+
+        # Update organisation id in users
+        users_collection = db["users"]
+        users_collection.update_many(
+            {"roles.orgid": old_organisation_id},
+            {"$set": {"roles.$.orgid": organisation["_id"]}},
+        )
+
+        # Update organisation id in individuals
+        individuals_collection = db["individuals"]
+        individuals_collection.update_many(
+            {"organisationid": old_organisation_id},
+            {"$set": {"organisationid": organisation["_id"]}},
+        )
+        
+    except Exception as e:
+        print(e)
+
+
 def main():
     # Database client with authentication
     client = MongoClient(f"mongodb://{username}:{password}@{host}:{port}/{database}")
     db = client[database]  # type: ignore
+
+    # Update organisation id
+    update_organisation_id(db)
 
     # Obtain token for admin user
     token = get_admin_token(
@@ -292,6 +496,10 @@ def main():
 
     # Populate individuals in mongodb and keycloak
     populate_individuals(db=db)
+    # Populate data agreements in mongodb
+    populate_dataagreements(db=db)
+    # Populate revisions in mongodb
+    populate_revisions(db=db)
 
     # Update caddy with default access token headers for organisation admin and individual endpoints
     org_admin_token = login_organisation_admin(
