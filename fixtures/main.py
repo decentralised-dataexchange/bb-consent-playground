@@ -199,7 +199,7 @@ def populate_individuals(db):
         # Populate individuals collection
         seed_year = 2010
         index = 0
-        for individual in data["individuals"]:
+        for individual in data.get("individuals", []):
             # Individual data
             individual_id = individual.get(
                 "id", generate_object_id(seed_year + index, 1, 1)
@@ -295,7 +295,7 @@ def populate_dataagreements(db):
         seed_year = 2010
         index = 0
 
-        for dataagreement in data["dataAgreements"]:
+        for dataagreement in data.get("dataAgreements", []):
             # dataagreement data
 
             controller_id = str(organisation["_id"])
@@ -399,7 +399,7 @@ def populate_revisions(db):
         seed_year = 2012
         index = 0
 
-        for revision in data["revisions"]:
+        for revision in data.get("revisions", []):
             # revision data
 
             # Save revision to db
@@ -508,12 +508,14 @@ def main():
         username=consent_bb_admin_user,
         password=consent_bb_admin_password,
     )
-    individual_token = login_individual(
-        host="api",
-        port="80",
-        username=data["individuals"][0]["email"],
-        password=consent_bb_user_password,
-    )
+    individual_token = {"token": {"accessToken": ""}}
+    if len(data.get("individuals", [])) > 0:
+        individual_token = login_individual(
+            host="api",
+            port="80",
+            username=data["individuals"][0]["email"],
+            password=consent_bb_user_password,
+        )
     update_caddy_configuration(
         org_admin_token=org_admin_token["accessToken"],
         individual_token=individual_token["token"]["accessToken"],
