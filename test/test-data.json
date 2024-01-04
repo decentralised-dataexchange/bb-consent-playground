@@ -4,5 +4,53 @@
       "id": "4b3d3b000000000000000000",
       "email": "johndoe@yopmail.com"
     }
+  ],
+  "dataAgreements": [
+    {
+      "id": "1",
+      "purpose": "Registration in Health App",
+      "purposeDescription": "Registration in Health App",
+      "lawfulBasis": "consent",
+      "active": true,
+      "forgettable": false,
+      "lifecycle": "complete",
+      "dataAttributes": [
+        {
+          "id": "6595279313c370b9a5569c21",
+          "name": "Name",
+          "description": "Name of person",
+          "sensitivity": false,
+          "category": ""
+        },
+        {
+          "id": "6595279313c370b9a5569c22",
+          "name": "Age",
+          "description": "Age of person",
+          "sensitivity": false,
+          "category": ""
+        }
+      ],
+      "datause": "data_source",
+      "dpia": "DPIA by MoJ on user registration for health centers, April 2nd 2023",
+      "compatibleWithVersion": "",
+      "timestamp": "2024-01-03T09:23:31Z"
+    }
+  ],
+  "revisions": [
+    {
+      "id": "6595279313c370b9a5569c23",
+      "schemaName": "dataAgreement",
+      "objectId": "1",
+      "signedWithoutObjectId": false,
+      "timestamp": "2024-01-03T09:23:31Z",
+      "authorizedByIndividualId": "",
+      "authorizedByOtherId": "",
+      "predecessorHash": "",
+      "predecessorSignature": "",
+      "objectData": "{\"id\":\"1\",\"version\":\"1.0.0\",\"controllerId\":\"1\",\"controllerUrl\":\"https://abc.com/eula.html\",\"controllerName\":\"Retail company\",\"policy\":{\"id\":\"1\",\"name\":\"Updated Policy\",\"version\":\"\",\"url\":\"https://igrant.io/policy.html\",\"jurisdiction\":\"London,GB\",\"industrySector\":\"Retail\",\"dataRetentionPeriodDays\":350,\"geographicRestriction\":\"Not restricted\",\"storageLocation\":\"London\",\"thirdPartyDataSharing\":true},\"purpose\":\"Issue Licensess\",\"purposeDescription\":\"Issue Passports\",\"lawfulBasis\":\"consent\",\"methodOfUse\":\"data_source\",\"dpiaDate\":\"2023-10-31T14:24\",\"dpiaSummaryUrl\":\"https://privacyant.se/dpia_results.html\",\"signature\":{\"id\":\"6595279313c370b9a5569c20\",\"payload\":\"\",\"signature\":\"\",\"verificationMethod\":\"\",\"verificationPayload\":\"\",\"verificationPayloadHash\":\"\",\"verificationArtifact\":\"\",\"verificationSignedBy\":\"\",\"verificationSignedAs\":\"\",\"verificationJwsHeader\":\"\",\"timestamp\":\"\",\"signedWithoutObjectReference\":false,\"objectType\":\"\",\"objectReference\":\"\"},\"active\":true,\"forgettable\":false,\"compatibleWithVersionId\":\"\",\"lifecycle\":\"complete\",\"dataAttributes\":[{\"id\":\"6595279313c370b9a5569c21\",\"name\":\"Name\",\"description\":\"Name of person\",\"sensitivity\":false,\"category\":\"\"},{\"id\":\"6595279313c370b9a5569c22\",\"name\":\"Age\",\"description\":\"Age of person\",\"sensitivity\":false,\"category\":\"\"}],\"dataUse\":\"data_source\",\"dpia\":\"\",\"compatibleWithVersion\":\"\",\"controller\":{\"id\":\"1\",\"name\":\"Retail company\",\"url\":\"https://abc.com/eula.html\"}}",
+      "successorId": "",
+      "serializedHash": "83a7cc40a2de1b07e8b7971f0a44ac110bc37b24",
+      "serializedSnapshot": "{\"id\":\"6595279313c370b9a5569c23\",\"schemaName\":\"dataAgreement\",\"objectId\":\"1\",\"signedWithoutObjectId\":false,\"timestamp\":\"2024-01-03T09:23:31Z\",\"authorizedByIndividualId\":\"\",\"authorizedByOtherId\":\"6595276613c370b9a5569c0c\",\"predecessorHash\":\"\",\"predecessorSignature\":\"\",\"objectData\":\"{\\\"id\\\":\\\"1\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"controllerId\\\":\\\"1\\\",\\\"controllerUrl\\\":\\\"https://abc.com/eula.html\\\",\\\"controllerName\\\":\\\"Retail company\\\",\\\"policy\\\":{\\\"id\\\":\\\"1\\\",\\\"name\\\":\\\"Updated Policy\\\",\\\"version\\\":\\\"\\\",\\\"url\\\":\\\"https://igrant.io/policy.html\\\",\\\"jurisdiction\\\":\\\"London,GB\\\",\\\"industrySector\\\":\\\"Retail\\\",\\\"dataRetentionPeriodDays\\\":350,\\\"geographicRestriction\\\":\\\"Not restricted\\\",\\\"storageLocation\\\":\\\"London\\\",\\\"thirdPartyDataSharing\\\":true},\\\"purpose\\\":\\\"Issue Licensess\\\",\\\"purposeDescription\\\":\\\"Issue Passports\\\",\\\"lawfulBasis\\\":\\\"consent\\\",\\\"methodOfUse\\\":\\\"data_source\\\",\\\"dpiaDate\\\":\\\"2023-10-31T14:24\\\",\\\"dpiaSummaryUrl\\\":\\\"https://privacyant.se/dpia_results.html\\\",\\\"signature\\\":{\\\"id\\\":\\\"6595279313c370b9a5569c20\\\",\\\"payload\\\":\\\"\\\",\\\"signature\\\":\\\"\\\",\\\"verificationMethod\\\":\\\"\\\",\\\"verificationPayload\\\":\\\"\\\",\\\"verificationPayloadHash\\\":\\\"\\\",\\\"verificationArtifact\\\":\\\"\\\",\\\"verificationSignedBy\\\":\\\"\\\",\\\"verificationSignedAs\\\":\\\"\\\",\\\"verificationJwsHeader\\\":\\\"\\\",\\\"timestamp\\\":\\\"\\\",\\\"signedWithoutObjectReference\\\":false,\\\"objectType\\\":\\\"\\\",\\\"objectReference\\\":\\\"\\\"},\\\"active\\\":true,\\\"forgettable\\\":false,\\\"compatibleWithVersionId\\\":\\\"\\\",\\\"lifecycle\\\":\\\"complete\\\",\\\"dataAttributes\\\":[{\\\"id\\\":\\\"6595279313c370b9a5569c21\\\",\\\"name\\\":\\\"Name\\\",\\\"description\\\":\\\"Name of person\\\",\\\"sensitivity\\\":false,\\\"category\\\":\\\"\\\"},{\\\"id\\\":\\\"6595279313c370b9a5569c22\\\",\\\"name\\\":\\\"Age\\\",\\\"description\\\":\\\"Age of person\\\",\\\"sensitivity\\\":false,\\\"category\\\":\\\"\\\"}],\\\"dataUse\\\":\\\"data_source\\\",\\\"dpia\\\":\\\"\\\",\\\"compatibleWithVersion\\\":\\\"\\\",\\\"controller\\\":{\\\"id\\\":\\\"1\\\",\\\"name\\\":\\\"Retail company\\\",\\\"url\\\":\\\"https://abc.com/eula.html\\\"}}\"}"
+    }
   ]
 }
