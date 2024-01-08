@@ -15,7 +15,7 @@ http://localhost:80 {
 		openapi {
 			spec /consent-openapi.yaml
 			log_error
-			# fall_through
+			fall_through
 			check {
 				req_params req_body
 				# When we are ready to handle validation of the body:

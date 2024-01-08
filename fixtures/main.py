@@ -431,6 +431,85 @@ def populate_revisions(db):
     except Exception as e:
         print(e)
 
+def populate_consent_records(db):
+    try:
+
+        organisation_id = get_organisation_id(db)
+
+        consent_records_collection = db["dataAgreementRecords"]
+
+        # Populate consent records collection
+        seed_year = 2012
+        index = 0
+
+        for consent_record in data.get("consentRecords", []):
+
+            # Save consent records to db
+            consent_records_collection.insert_one(
+                {
+                    "_id": consent_record.get(
+                        "id", generate_object_id(seed_year + index, 1, 1)
+                    ),
+                    "dataagreementid": consent_record.get("dataAgreementId", "1"),
+                    "dataagreementrevisionid": consent_record.get("dataAgreementRevisionId", ""),
+                    "dataagreementrevisionhash": consent_record.get(
+                        "dataAgreementRevisionHash", ""
+                    ),
+                    "individualid": consent_record.get(
+                        "individualId", ""
+                    ),
+                    "optin": consent_record.get("optIn", True),
+                    "state": consent_record.get("state", ""),
+                    "signatureid": consent_record.get("signatureId", ""),
+                    "organisationid": organisation_id,
+                    "isdeleted": False,
+                }
+            )
+
+        index += 1
+    except Exception as e:
+        print(e)
+
+def populate_policies(db):
+    try:
+        organisation_id = get_organisation_id(db)
+
+        policies_collection = db["policies"]
+
+        # Populate policies collection
+        seed_year = 2012
+        index = 0
+
+        for policy in data.get("policies", []):
+
+            # Save policies to db
+            policies_collection.insert_one(
+                {
+                    "_id": policy.get(
+                        "id", generate_object_id(seed_year + index, 1, 1)
+                    ),
+                    "name": policy.get("name", "Policy One"),
+                    "version": policy.get("version", "v1.0.0"),
+                    "url": policy.get(
+                        "url", ""
+                    ),
+                    "jurisdiction": policy.get(
+                        "jurisdiction", ""
+                    ),
+                    "industrysector": policy.get("industrySector", "public"),
+                    "dataretentionperioddays": policy.get("dataRetentionPeriodDays", 365),
+                    "geographicrestriction": policy.get("geographicRestriction", ""),
+                    "storagelocation": policy.get("storageLocation", ""),
+                    "thirdpartydatasharing": policy.get("thirdPartyDataSharing", True),
+                    "organisationid": organisation_id,
+                    "isdeleted": False,
+                }
+            )
+
+        index += 1
+    except Exception as e:
+        print(e)
+
 
 def update_organisation_id(db):
     try:
@@ -498,6 +577,10 @@ def main():
     populate_individuals(db=db)
     # Populate data agreements in mongodb
     populate_dataagreements(db=db)
+    # Populate consent records
+    populate_consent_records(db)
+    # Populate policies
+    populate_policies(db)
     # Populate revisions in mongodb
     populate_revisions(db=db)
 
