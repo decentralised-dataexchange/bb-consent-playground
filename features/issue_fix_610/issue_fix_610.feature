@@ -1,7 +1,7 @@
 Feature: Issue fix 610
 
   @positive @get_data_agreement
-  Scenario Outline: Retrieve data agreement configuration by valid ID
+  Scenario Outline: CONFIG - READ - Read data agreement
     Given a data agreement ID "<dataAgreementId>"
     When I make a GET request to /config/data-agreement/"<dataAgreementId>"
     Then The response should have a status code of 200
@@ -13,7 +13,7 @@ Feature: Issue fix 610
     | 659c12ea3140212807b80000 |
 
   @positive @list_data_agreements
-  Scenario Outline: List data agreement configuration
+  Scenario Outline: CONFIG - LIST - List all data agreements
     Given a data agreement ID "<dataAgreementId>"
     When I make a GET request to /config/data-agreements
     Then The response should have a status code of 200
@@ -25,7 +25,7 @@ Feature: Issue fix 610
     | 659c12ea3140212807b80000 |
   
   @positive @list_data_agreement_revisions
-  Scenario Outline: List data agreement revision configuration
+  Scenario Outline: CONFIG - LIST - List data agreement revisions
     Given a data agreement ID "<dataAgreementId>"
     When I make a GET request to get data agreement revisions for data agreement "<dataAgreementId>"
     Then The response should have a status code of 200
@@ -37,7 +37,7 @@ Feature: Issue fix 610
     | 659c12ea3140212807b80000 |
 
   @positive @get_policy
-  Scenario Outline: Retrieve policy configuration by valid ID
+  Scenario Outline: CONFIG - READ - Read data policy
     Given a policy ID "<policyId>"
     When I make a GET request to /config/policy/"<policyId>"
     Then The response should have a status code of 200
@@ -49,7 +49,7 @@ Feature: Issue fix 610
     | 2        |
 
   @positive @list_policies
-  Scenario Outline: List policy configuration
+  Scenario Outline: CONFIG - LIST - List all data policies
     Given a policy ID "<policyId>"
     When I make a GET request to /config/policies
     Then The response should have a status code of 200
@@ -61,7 +61,7 @@ Feature: Issue fix 610
     | 2        |
 
   @positive @list_policy_revisions
-  Scenario Outline: List policy revisions configuration
+  Scenario Outline: CONFIG - LIST - List data policy revisions
     Given a policy ID "<policyId>"
     When I make a GET request to get policy revisions for policy "<policyId>"
     Then The response should have a status code of 200
@@ -73,7 +73,7 @@ Feature: Issue fix 610
     | 2        |
 
   @positive @delete_policy
-  Scenario Outline: Delete policy configuration by valid ID
+  Scenario Outline: CONFIG - DELETE - Delete data policy
     Given a policy ID "<policyId>"
     When I make a DELETE request to /config/policy/"<policyId>"
     Then The response should have a status code of 200
@@ -84,7 +84,7 @@ Feature: Issue fix 610
     | 2        |
 
   @positive @service_get_data_agreement
-  Scenario Outline: Retrieve data agreement configuration by valid ID in service
+  Scenario Outline: SERVICE - READ - Read data agreement
     Given a data agreement ID "<dataAgreementId>" 
     And an individual ID "<individualId>"
     When I make a GET request to /service/data-agreement/"<dataAgreementId>"
@@ -96,7 +96,7 @@ Feature: Issue fix 610
     | 1               | 1            |
 
   @positive @service_read_policy
-  Scenario Outline: Retrieve policy configuration by valid ID in service
+  Scenario Outline: SERVICE - READ - Read data policy
     Given an individual ID "<individualId>" 
     And a policy ID "<policyId>"
     When I make a GET request to /service/policy/"<policyId>"
@@ -108,7 +108,7 @@ Feature: Issue fix 610
     | 1        | 1            |
 
   @positive @service_create_draft_consent_record
-  Scenario Outline: Create draft consent record
+  Scenario Outline: SERVICE - CREATE - Create draft consent record
     Given an individual ID "<individualId>" 
     And a data agreement ID "<dataAgreementId>"
     When I make a POST request to /service/individual/record/consent-record/draft
@@ -120,7 +120,7 @@ Feature: Issue fix 610
     | 1               | 1            |
 
   @positive @service_create_consent_record
-  Scenario Outline: Create consent record
+  Scenario Outline: SERVICE - CREATE - Create consent record
     Given an individual ID "<individualId>" 
     And a data agreement ID "<dataAgreementId>"
     When I make a POST request to /service/individual/record/data-agreement/"<dataAgreementId>"
@@ -132,7 +132,7 @@ Feature: Issue fix 610
     | 659c12ea3140212807b80000 | 1            |
 
   @positive @service_get_consent_record
-  Scenario Outline: Retrives consent record
+  Scenario Outline: SERVICE - READ - Read consent record
     Given an individual ID "<individualId>" 
     And a data agreement ID "<dataAgreementId>"
     And a consent record ID "<consentRecordId>"
@@ -146,7 +146,7 @@ Feature: Issue fix 610
 
 
   @positive @service_verification_fetch_consent_record
-  Scenario Outline: Retrive consent record
+  Scenario Outline: SERVICE - READ - Read latest consent record
     Given an individual ID "<individualId>"
     And a data agreement ID "<dataAgreementId>"
     And a consent record ID "<consentRecordId>"
@@ -159,7 +159,7 @@ Feature: Issue fix 610
     | 1               | 1               | 1            |
 
   @positive @service_update_consent_record
-  Scenario Outline: Update consent record
+  Scenario Outline: SERVICE - UPDATE - Update consent record
     Given an individual ID "<individualId>" 
     And a consent record ID "<consentRecordId>"
     And a data agreement ID "<dataAgreementId>"
@@ -172,7 +172,7 @@ Feature: Issue fix 610
     | 1               | 1               | 1            |
 
   @positive @service_verification_list_consent_records
-  Scenario Outline: Verification list consent records
+  Scenario Outline: SERVICE - LIST - List all consent records
     Given an individual ID "<individualId>" 
     And a data agreement ID "<dataAgreementId>"
     And a consent record ID "<consentRecordId>"
@@ -185,7 +185,7 @@ Feature: Issue fix 610
     | 1               | 1               | 1            |
 
   @positive @service_list_consent_records
-  Scenario Outline: List consent records
+  Scenario Outline: SERVICE - LIST - List all consent records for individual
     Given an individual ID "<individualId>" 
     And a data agreement ID "<dataAgreementId>"
     And a consent record ID "<consentRecordId>"
@@ -198,7 +198,7 @@ Feature: Issue fix 610
     | 1               | 1               | 1            |
 
   @positive @delete_data_agreement
-  Scenario Outline: Delete data agreement configuration
+  Scenario Outline: CONFIG - DELETE - Delete data agreement
     Given a data agreement ID "<dataAgreementId>"
     When I make a DELETE request to /config/data-agreement/"<dataAgreementId>"
     Then The response should have a status code of 200
