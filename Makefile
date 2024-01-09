@@ -31,7 +31,7 @@ build-test: ## Build behave image
 	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f Dockerfile .
 
 run-test: ## Run BDD test
-	docker run --network=test_custom_network igrantio/bb-consent-test-runner:dev
+	docker run --network=test_custom_network -v ./allure-results:/tests/allure-results -v ./allure-report:/tests/allure-report igrantio/bb-consent-test-runner:dev
 
 setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \

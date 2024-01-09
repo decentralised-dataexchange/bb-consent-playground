@@ -2,3 +2,5 @@ api-backup.json
 api-dev-tests.json
 temp/
 env
+allure-report/
+allure-results/
