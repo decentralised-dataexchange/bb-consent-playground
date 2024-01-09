@@ -33,9 +33,6 @@ build-test: ## Build behave image
 run-test: ## Run BDD test
 	docker run --network=test_custom_network igrantio/bb-consent-test-runner:dev
 
-run-test-behave:
-	behave
-
 setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \
 	mkdir temp && \

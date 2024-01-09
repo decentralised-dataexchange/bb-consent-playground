@@ -2,6 +2,22 @@
 	admin 0.0.0.0:2019
 }
 
+http://caddy:80 {
+	@api {
+		path /*
+	}
+
+	reverse_proxy @api {
+		to http://api:80
+	}
+
+	# Log all requests to stdout for Docker logs
+	log {
+		output stdout
+		level DEBUG
+	}
+}
+
 http://localhost:80 {
 	@api {
 		path /*

@@ -123,7 +123,8 @@ def login_individual(host, port, username, password):
 
 def update_caddy_configuration(org_admin_token, individual_token):
     # Caddy API endpoint URL
-    url = f"http://{caddy_host}:{caddy_port}/config/apps/http/servers/srv0/routes/0/handle/0/routes/0"
+    url0 = f"http://{caddy_host}:{caddy_port}/config/apps/http/servers/srv0/routes/0/handle/0/routes/0"
+    url1 = f"http://{caddy_host}:{caddy_port}/config/apps/http/servers/srv0/routes/1/handle/0/routes/0"
 
     # Caddy API request payload
     payload = {
@@ -147,7 +148,8 @@ def update_caddy_configuration(org_admin_token, individual_token):
     }
 
     # Send a request to Caddy API to update the configuration
-    requests.put(url, json=payload)
+    requests.put(url0, json=payload)
+    requests.put(url1, json=payload)
 
     # Caddy API request payload
     payload = {
@@ -161,7 +163,8 @@ def update_caddy_configuration(org_admin_token, individual_token):
     }
 
     # Send a request to Caddy API to update the configuration
-    requests.put(url, json=payload)
+    requests.put(url0, json=payload)
+    requests.put(url1, json=payload)
 
 
 def populate_individuals(db):
