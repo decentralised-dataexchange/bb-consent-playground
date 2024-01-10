@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   mongo:
-    image: zcube/bitnami-compat-mongodb:6.0.5
+    image: ${MONGODB_IMAGE:-zcube/bitnami-compat-mongodb:6.0.5}
     container_name: mongo
     environment:
       - MONGODB_DATABASE=bb-consent-consentdb
@@ -13,7 +13,7 @@ services:
       - custom_network
 
   postgresql:
-    image: bitnami/postgresql:14.10.0
+    image: ${POSTGRESQL_IMAGE:-bitnami/postgresql:14.10.0}
     container_name: postgresql
     environment:
       - POSTGRESQL_USERNAME=bn_keycloak
@@ -23,7 +23,7 @@ services:
       - custom_network
 
   keycloak:
-    image: docker.io/bitnami/keycloak:22.0.2-debian-11-r0
+    image: ${KEYCLOAK_IMAGE:-docker.io/bitnami/keycloak:22.0.2-debian-11-r0}
     container_name: keycloak
     restart: always
     environment:
@@ -44,7 +44,7 @@ services:
       - custom_network
 
   api:
-    image: igrantio/bb-consent-api:2023.12.2
+    image: ${API_IMAGE:-igrantio/bb-consent-api:2023.12.2}
     container_name: api
     restart: always
     ports:
@@ -58,7 +58,7 @@ services:
       - custom_network
 
   caddy:
-    image: igrantio/bb-consent-caddy:2023.12.2
+    image: ${CADDY_IMAGE:-igrantio/bb-consent-caddy:2023.12.2}
     container_name: caddy
     ports:
       - "3333:80"
@@ -73,7 +73,7 @@ services:
       - custom_network
 
   fixtures:
-    image: igrantio/bb-consent-fixtures:2023.12.2
+    image: ${FIXTURES_IMAGE:-igrantio/bb-consent-fixtures:2023.12.2}
     container_name: fixtures
     volumes:
       - ./test-data.json:/app/data.json:ro

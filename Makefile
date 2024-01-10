@@ -6,6 +6,14 @@ help:
 	@echo "------------------------------------------------------------------------"
 	@grep -E '^[0-9a-zA-Z_/%\-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+# You can customize the default values or override them by passing parameters
+export MONGODB_IMAGE ?= zcube/bitnami-compat-mongodb:6.0.5
+export POSTGRESQL_IMAGE ?= bitnami/postgresql:14.10.0
+export KEYCLOAK_IMAGE ?= docker.io/bitnami/keycloak:22.0.2-debian-11-r0
+export API_IMAGE ?= igrantio/bb-consent-api:2023.12.2
+export CADDY_IMAGE ?= igrantio/bb-consent-caddy:2023.12.2
+export FIXTURES_IMAGE ?= igrantio/bb-consent-fixtures:2023.12.2
+
 destroy: ## Delete all containers and volumes
 	@if [ -n "$$(docker container ls -aq)" ]; then \
 		docker container rm -f $$(docker container ls -aq); \
@@ -31,7 +39,7 @@ build-test: ## Build behave image
 	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f Dockerfile .
 
 run-test: ## Run BDD test
-	docker run --network=test_custom_network -v ./allure-results:/tests/allure-results -v ./allure-report:/tests/allure-report igrantio/bb-consent-test-runner:dev
+	docker run --network=test_custom_network -v ./allure-results:/tests/allure-results igrantio/bb-consent-test-runner:dev
 
 setup-dev: ## Setup api, admin and privacy dashboard for development branch tests
 	sudo rm -rf temp && \
