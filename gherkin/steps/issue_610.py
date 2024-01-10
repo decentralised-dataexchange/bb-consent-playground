@@ -1,6 +1,8 @@
 import json
+
 import requests
 from behave import *
+
 
 @given("a data agreement ID \"{dataAgreementId}\"")
 def step_impl(context, dataAgreementId):

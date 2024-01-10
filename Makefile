@@ -36,7 +36,7 @@ clean: ## Stop and destroy volumes
 	docker-compose down -v
 
 build-test: ## Build behave image
-	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f Dockerfile .
+	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f ./gherkin/Dockerfile ./gherkin
 
 run-test: ## Run BDD test
 	docker run --network=test_custom_network -v ./allure-results:/tests/allure-results:rw igrantio/bb-consent-test-runner:dev
