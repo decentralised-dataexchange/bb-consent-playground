@@ -411,7 +411,7 @@ def populate_revisions(db):
                     "_id": revision.get(
                         "id", generate_object_id(seed_year + index, 1, 1)
                     ),
-                    "schemaname": revision.get("schemaName", "dataAgreement"),
+                    "schemaname": revision.get("schemaName", "DataAgreement"),
                     "objectid": revision.get("objectId", "1"),
                     "signedwithoutobjectid": revision.get(
                         "signedWithoutObjectId", False
@@ -420,7 +420,7 @@ def populate_revisions(db):
                     "authorizedbyindividualid": revision.get(
                         "authorizedByIndividualId", ""
                     ),
-                    "authorizedbyotherid": revision.get("authorizedByOtherId", ""),
+                    "authorizedbyother": revision.get("authorizedByOther", ""),
                     "predecessorhash": revision.get("predecessorHash", ""),
                     "predecessorsignature": revision.get("predecessorSignature", ""),
                     "objectdata": revision.get("objectData", ""),
