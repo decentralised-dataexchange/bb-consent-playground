@@ -1,4 +1,9 @@
-Feature: Issue fix 610
+@govstack
+@critical
+@allure.issue:https://github.com/decentralised-dataexchange/bb-consent-api/issues/610
+@allure.label.author:Albin-Antony
+@allure.label.as_id:610
+Feature: Fetch revisions by `objectId` and `schemaName`
 
   @positive @get_data_agreement
   Scenario Outline: CONFIG - READ - Read data agreement
