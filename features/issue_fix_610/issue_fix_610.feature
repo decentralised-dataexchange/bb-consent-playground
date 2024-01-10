@@ -23,6 +23,17 @@ Feature: Issue fix 610
     | dataAgreementId |
     | 1               |
     | 659c12ea3140212807b80000 |
+
+  @positive @delete_data_agreement
+  Scenario Outline: CONFIG - DELETE - Delete data agreement
+    Given a data agreement ID "<dataAgreementId>"
+    When I make a DELETE request to /config/data-agreement/"<dataAgreementId>"
+    Then The response should have a status code of 200
+    And The response should only contain the data agreement revision details for "<dataAgreementId>"
+
+    Examples: Valid data
+    | dataAgreementId |
+    | 659e5aafa35cad660a9021f5 |
   
   @positive @list_data_agreement_revisions
   Scenario Outline: CONFIG - LIST - List data agreement revisions
@@ -196,16 +207,5 @@ Feature: Issue fix 610
     Examples: Valid data
     | dataAgreementId | consentRecordId | individualId |
     | 1               | 1               | 1            |
-
-  @positive @delete_data_agreement
-  Scenario Outline: CONFIG - DELETE - Delete data agreement
-    Given a data agreement ID "<dataAgreementId>"
-    When I make a DELETE request to /config/data-agreement/"<dataAgreementId>"
-    Then The response should have a status code of 200
-    And The response should only contain the data agreement revision details for "<dataAgreementId>"
-
-    Examples: Valid data
-    | dataAgreementId |
-    | 659c12ea3140212807b80000 |
 
   

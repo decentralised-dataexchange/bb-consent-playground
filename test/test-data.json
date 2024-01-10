@@ -65,17 +65,42 @@
       "dpia": "",
       "compatibleWithVersion": "",
       "timestamp": "2024-01-03T09:23:31Z"
+    },
+    {
+      "id": "659e5aafa35cad660a9021f5",
+      "purpose": "Issue License",
+      "purposeDescription": "Issue License",
+      "lawfulBasis": "consent",
+      "active": true,
+      "forgettable": false,
+      "lifecycle": "complete",
+      "dpiaDate": "2023-10-31T14:24",
+      "dpiaSummaryUrl": "https://privacyant.se/dpia_results.html",
+      "dataAttributes": [
+        {
+          "id": "659e5aafa35cad660a9021f8",
+          "name": "Age",
+          "description": "Age of person",
+          "sensitivity": false,
+          "category": ""
+        }
+      ],
+      "methodOfUse": "data_source",
+      "datause": "data_source",
+      "dpia": "",
+      "compatibleWithVersion": "",
+      "timestamp": "2024-01-10T08:51:59Z"
     }
   ],
   "revisions": [
     {
       "id": "6595279313c370b9a5569c23",
-      "schemaName": "dataAgreement",
+      "schemaName": "DataAgreement",
       "objectId": "1",
       "signedWithoutObjectId": false,
       "timestamp": "2024-01-03T09:23:31Z",
       "authorizedByIndividualId": "",
-      "authorizedByOtherId": "",
+      "authorizedByOther": "6595276613c370b9a5569c0c",
       "predecessorHash": "",
       "predecessorSignature": "",
       "objectData": "{\"id\":\"1\",\"version\":\"1.0.0\",\"controllerId\":\"1\",\"controllerUrl\":\"https://abc.com/eula.html\",\"controllerName\":\"Retail company\",\"policy\":{\"id\":\"1\",\"name\":\"Updated Policy\",\"version\":\"\",\"url\":\"https://igrant.io/policy.html\",\"jurisdiction\":\"London,GB\",\"industrySector\":\"Retail\",\"dataRetentionPeriodDays\":350,\"geographicRestriction\":\"Not restricted\",\"storageLocation\":\"London\",\"thirdPartyDataSharing\":true},\"purpose\":\"Issue Licensess\",\"purposeDescription\":\"Issue Passports\",\"lawfulBasis\":\"consent\",\"methodOfUse\":\"data_source\",\"dpiaDate\":\"2023-10-31T14:24\",\"dpiaSummaryUrl\":\"https://privacyant.se/dpia_results.html\",\"signature\":{\"id\":\"6595279313c370b9a5569c20\",\"payload\":\"\",\"signature\":\"\",\"verificationMethod\":\"\",\"verificationPayload\":\"\",\"verificationPayloadHash\":\"\",\"verificationArtifact\":\"\",\"verificationSignedBy\":\"\",\"verificationSignedAs\":\"\",\"verificationJwsHeader\":\"\",\"timestamp\":\"\",\"signedWithoutObjectReference\":false,\"objectType\":\"\",\"objectReference\":\"\"},\"active\":true,\"forgettable\":false,\"compatibleWithVersionId\":\"\",\"lifecycle\":\"complete\",\"dataAttributes\":[{\"id\":\"6595279313c370b9a5569c21\",\"name\":\"Name\",\"description\":\"Name of person\",\"sensitivity\":false,\"category\":\"\"},{\"id\":\"6595279313c370b9a5569c22\",\"name\":\"Age\",\"description\":\"Age of person\",\"sensitivity\":false,\"category\":\"\"}],\"dataUse\":\"data_source\",\"dpia\":\"\",\"compatibleWithVersion\":\"\",\"controller\":{\"id\":\"1\",\"name\":\"Retail company\",\"url\":\"https://abc.com/eula.html\"}}",
@@ -85,12 +110,12 @@
     },
     {
       "id": "659c12ea3140212807b80004",
-      "schemaName": "dataAgreement",
+      "schemaName": "DataAgreement",
       "objectId": "659c12ea3140212807b80000",
       "signedWithoutObjectId": false,
       "timestamp": "2024-01-08T15:21:14Z",
       "authorizedByIndividualId": "",
-      "authorizedByOtherId": "659c121f3140212807b7ffee",
+      "authorizedByOther": "659c121f3140212807b7ffee",
       "predecessorHash": "",
       "predecessorSignature": "",
       "objectData": "{\"id\":\"659c12ea3140212807b80000\",\"version\":\"1.0.0\",\"controllerId\":\"1\",\"controllerUrl\":\"https://www.skatteverket.se\",\"controllerName\":\"Skatteverket\",\"policy\":{\"id\":\"659c12ea3140212807b80001\",\"name\":\"Policy 1\",\"version\":\"1.0.0\",\"url\":\"https://www.skatteverket.se\",\"jurisdiction\":\"Sweden\",\"industrySector\":\"Public\",\"dataRetentionPeriodDays\":1095,\"geographicRestriction\":\"Sweden\",\"storageLocation\":\"Sweden\",\"thirdPartyDataSharing\":true},\"purpose\":\"Marketing and campaign\",\"purposeDescription\":\"Marketing and campaign\",\"lawfulBasis\":\"consent\",\"methodOfUse\":\"data_source\",\"dpiaDate\":\"\",\"dpiaSummaryUrl\":\"\",\"signature\":{\"id\":\"659c12ea3140212807b80002\",\"payload\":\"\",\"signature\":\"\",\"verificationMethod\":\"\",\"verificationPayload\":\"\",\"verificationPayloadHash\":\"\",\"verificationArtifact\":\"\",\"verificationSignedBy\":\"\",\"verificationSignedAs\":\"\",\"verificationJwsHeader\":\"\",\"timestamp\":\"\",\"signedWithoutObjectReference\":false,\"objectType\":\"\",\"objectReference\":\"\"},\"active\":true,\"forgettable\":false,\"compatibleWithVersionId\":\"\",\"lifecycle\":\"complete\",\"dataAttributes\":[{\"id\":\"659c12ea3140212807b80003\",\"name\":\"Name\",\"description\":\"Name of person\",\"sensitivity\":false,\"category\":\"\"}],\"dataUse\":\"data_source\",\"dpia\":\"\",\"compatibleWithVersion\":\"\",\"controller\":{\"id\":\"1\",\"name\":\"Skatteverket\",\"url\":\"https://www.skatteverket.se\"}}",
@@ -100,12 +125,12 @@
     },
     {
       "id": "659ba2f439e82e51b4885d77",
-      "schemaName": "consentRecord",
+      "schemaName": "ConsentRecord",
       "objectId": "1",
       "signedWithoutObjectId": false,
       "timestamp": "2024-01-08T07:23:32Z",
       "authorizedByIndividualId": "",
-      "authorizedByOtherId": "659b9d1539e82e51b4885ca7",
+      "authorizedByOther": "659b9d1539e82e51b4885ca7",
       "predecessorHash": "",
       "predecessorSignature": "",
       "objectData": "{\"id\":\"1\",\"dataAgreementId\":\"1\",\"dataAgreementRevisionId\":\"6595279313c370b9a5569c23\",\"dataAgreementRevisionHash\":\"83a7cc40a2de1b07e8b7971f0a44ac110bc37b24\",\"individualId\":\"1\",\"optIn\":true,\"state\":\"unsigned\",\"signatureId\":\"\"}",
@@ -115,18 +140,33 @@
     },
     {
       "id": "659c16be3140212807b80009",
-      "schemaName": "policy",
+      "schemaName": "Policy",
       "objectId": "2",
       "signedWithoutObjectId": false,
       "timestamp": "2024-01-08T15:37:34Z",
       "authorizedByIndividualId": "",
-      "authorizedByOtherId": "659c121f3140212807b7ffee",
+      "authorizedByOther": "659c121f3140212807b7ffee",
       "predecessorHash": "",
       "predecessorSignature": "",
       "objectData": "{\"id\":\"2\",\"name\":\"Policy 2\",\"version\":\"1.0.0\",\"url\":\"https://www.skatteverket.se\",\"jurisdiction\":\"Sweden\",\"industrySector\":\"Public\",\"dataRetentionPeriodDays\":1095,\"geographicRestriction\":\"Sweden\",\"storageLocation\":\"Sweden\"}",
       "successorId": "",
       "serializedHash": "2712c137158bd8ef2549f7c5fb84dfcbab5c0a9f",
       "serializedSnapshot": "{\"id\":\"659c16be3140212807b80009\",\"schemaName\":\"policy\",\"objectId\":\"2\",\"signedWithoutObjectId\":false,\"timestamp\":\"2024-01-08T15:37:34Z\",\"authorizedByIndividualId\":\"\",\"authorizedByOtherId\":\"659c121f3140212807b7ffee\",\"predecessorHash\":\"\",\"predecessorSignature\":\"\",\"objectData\":\"{\\\"id\\\":\\\"2\\\",\\\"name\\\":\\\"Policy 2\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"url\\\":\\\"https://www.skatteverket.se\\\",\\\"jurisdiction\\\":\\\"Sweden\\\",\\\"industrySector\\\":\\\"Public\\\",\\\"dataRetentionPeriodDays\\\":1095,\\\"geographicRestriction\\\":\\\"Sweden\\\",\\\"storageLocation\\\":\\\"Sweden\\\"}\"}"
+    },
+    {
+      "id": "659e5aafa35cad660a9021f9",
+      "schemaName": "DataAgreement",
+      "objectId": "659e5aafa35cad660a9021f5",
+      "signedWithoutObjectId": false,
+      "timestamp": "2024-01-10T08:51:59Z",
+      "authorizedByIndividualId": "",
+      "authorizedByOther": "659e5aa4a35cad660a9021e4",
+      "predecessorHash": "",
+      "predecessorSignature": "",
+      "objectData": "{\"id\":\"659e5aafa35cad660a9021f5\",\"version\":\"1.0.0\",\"controllerId\":\"1\",\"controllerUrl\":\"https://www.skatteverket.se\",\"controllerName\":\"Skatteverket\",\"policy\":{\"id\":\"659e5aafa35cad660a9021f6\",\"name\":\"Policy 2\",\"version\":\"1.0.0\",\"url\":\"https://www.skatteverket.se\",\"jurisdiction\":\"Sweden\",\"industrySector\":\"Public\",\"dataRetentionPeriodDays\":1095,\"geographicRestriction\":\"Sweden\",\"storageLocation\":\"Sweden\",\"thirdPartyDataSharing\":true},\"purpose\":\"Issue License\",\"purposeDescription\":\"Issue License\",\"lawfulBasis\":\"consent\",\"methodOfUse\":\"data_source\",\"dpiaDate\":\"2023-10-31T14:24\",\"dpiaSummaryUrl\":\"https://privacyant.se/dpia_results.html\",\"signature\":{\"id\":\"659e5aafa35cad660a9021f7\",\"payload\":\"\",\"signature\":\"\",\"verificationMethod\":\"\",\"verificationPayload\":\"\",\"verificationPayloadHash\":\"\",\"verificationArtifact\":\"\",\"verificationSignedBy\":\"\",\"verificationSignedAs\":\"\",\"verificationJwsHeader\":\"\",\"timestamp\":\"\",\"signedWithoutObjectReference\":false,\"objectType\":\"\",\"objectReference\":\"\"},\"active\":true,\"forgettable\":false,\"compatibleWithVersionId\":\"\",\"lifecycle\":\"complete\",\"dataAttributes\":[{\"id\":\"659e5aafa35cad660a9021f8\",\"name\":\"Age\",\"description\":\"Age of person\",\"sensitivity\":false,\"category\":\"\"}],\"dataUse\":\"data_source\",\"dpia\":\"\",\"compatibleWithVersion\":\"\",\"controller\":{\"id\":\"1\",\"name\":\"Skatteverket\",\"url\":\"https://www.skatteverket.se\"}}",
+      "SuccessorId": "",
+      "SerializedHash": "f88bda218177f3ee1296d5897c145de96a2f59d0",
+      "SerializedSnapshot": "{\"schemaName\":\"DataAgreement\",\"objectId\":\"659e5aafa35cad660a9021f5\",\"signedWithoutObjectId\":false,\"timestamp\":\"2024-01-10T08:51:59Z\",\"authorizedByIndividualId\":\"\",\"authorizedByOther\":\"659e5aa4a35cad660a9021e4\",\"objectData\":\"{\\\"id\\\":\\\"659e5aafa35cad660a9021f5\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"controllerId\\\":\\\"1\\\",\\\"controllerUrl\\\":\\\"https://www.skatteverket.se\\\",\\\"controllerName\\\":\\\"Skatteverket\\\",\\\"policy\\\":{\\\"id\\\":\\\"659e5aafa35cad660a9021f6\\\",\\\"name\\\":\\\"Policy 2\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"url\\\":\\\"https://www.skatteverket.se\\\",\\\"jurisdiction\\\":\\\"Sweden\\\",\\\"industrySector\\\":\\\"Public\\\",\\\"dataRetentionPeriodDays\\\":1095,\\\"geographicRestriction\\\":\\\"Sweden\\\",\\\"storageLocation\\\":\\\"Sweden\\\",\\\"thirdPartyDataSharing\\\":true},\\\"purpose\\\":\\\"Issue License\\\",\\\"purposeDescription\\\":\\\"Issue License\\\",\\\"lawfulBasis\\\":\\\"consent\\\",\\\"methodOfUse\\\":\\\"data_source\\\",\\\"dpiaDate\\\":\\\"2023-10-31T14:24\\\",\\\"dpiaSummaryUrl\\\":\\\"https://privacyant.se/dpia_results.html\\\",\\\"signature\\\":{\\\"id\\\":\\\"659e5aafa35cad660a9021f7\\\",\\\"payload\\\":\\\"\\\",\\\"signature\\\":\\\"\\\",\\\"verificationMethod\\\":\\\"\\\",\\\"verificationPayload\\\":\\\"\\\",\\\"verificationPayloadHash\\\":\\\"\\\",\\\"verificationArtifact\\\":\\\"\\\",\\\"verificationSignedBy\\\":\\\"\\\",\\\"verificationSignedAs\\\":\\\"\\\",\\\"verificationJwsHeader\\\":\\\"\\\",\\\"timestamp\\\":\\\"\\\",\\\"signedWithoutObjectReference\\\":false,\\\"objectType\\\":\\\"\\\",\\\"objectReference\\\":\\\"\\\"},\\\"active\\\":true,\\\"forgettable\\\":false,\\\"compatibleWithVersionId\\\":\\\"\\\",\\\"lifecycle\\\":\\\"complete\\\",\\\"dataAttributes\\\":[{\\\"id\\\":\\\"659e5aafa35cad660a9021f8\\\",\\\"name\\\":\\\"Age\\\",\\\"description\\\":\\\"Age of person\\\",\\\"sensitivity\\\":false,\\\"category\\\":\\\"\\\"}],\\\"dataUse\\\":\\\"data_source\\\",\\\"dpia\\\":\\\"\\\",\\\"compatibleWithVersion\\\":\\\"\\\",\\\"controller\\\":{\\\"id\\\":\\\"1\\\",\\\"name\\\":\\\"Skatteverket\\\",\\\"url\\\":\\\"https://www.skatteverket.se\\\"}}\"}"
     }
   ],
   "consentRecords": [

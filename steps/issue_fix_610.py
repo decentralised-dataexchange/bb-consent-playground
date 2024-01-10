@@ -25,7 +25,8 @@ def step_impl(context, dataAgreementId):
     response_data = json.loads(context.response.content)
     assert response_data["dataAgreement"]["id"] == dataAgreementId, "Data agreement ID does not match"
     assert response_data["revision"]["objectId"] == dataAgreementId, "Revision object ID does not match data agreement ID"
-    assert response_data["revision"]["schemaName"] == "dataAgreement", "Revision schema name does not match data agreement"
+    assert response_data["revision"]["schemaName"] == "DataAgreement", "Revision schema name does not match data agreement"
+    assert len(response_data["revision"]["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when('I make a GET request to /config/data-agreements')
 def step_impl(context):
@@ -64,9 +65,11 @@ def step_impl(context, dataAgreementId):
     response_data = json.loads(context.response.content)
     revisions = response_data["revisions"]
     assert response_data["dataAgreement"]["id"] == dataAgreementId, "Data agreement ID does not match"
+    assert len(revisions) > 0, "Revisions is empty"
     for revision in revisions:
         assert revision["objectId"] == dataAgreementId, "Revision object ID does not match data agreement ID"
-        assert revision["schemaName"] == "dataAgreement", "Revision schema name does not match data agreement"
+        assert revision["schemaName"] == "DataAgreement", "Revision schema name does not match data agreement"
+        assert len(revision["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
     
 @given("a policy ID \"{policyId}\"")
 def step_impl(context, policyId):
@@ -87,7 +90,8 @@ def step_impl(context, policyId):
     response_data = json.loads(context.response.content)
     assert response_data["policy"]["id"] == policyId, "Policy ID does not match"
     assert response_data["revision"]["objectId"] == policyId, "Revision object ID does not match policy ID"
-    assert response_data["revision"]["schemaName"] == "policy", "Revision schema name does not match policy"
+    assert response_data["revision"]["schemaName"] == "Policy", "Revision schema name does not match policy"
+    assert len(response_data["revision"]["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when('I make a GET request to /config/policies')
 def step_impl(context):
@@ -127,9 +131,11 @@ def step_impl(context, policyId):
     response_data = json.loads(context.response.content)
     revisions = response_data["revisions"]
     assert response_data["policy"]["id"] == policyId, "Policy ID does not match"
+    assert len(revisions) > 0, "Revisions is empty"
     for revision in revisions:
         assert revision["objectId"] == policyId, "Revision object ID does not match policy ID"
-        assert revision["schemaName"] == "policy", "Revision schema name does not match policy"
+        assert revision["schemaName"] == "Policy", "Revision schema name does not match policy"
+        assert len(revision["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when("I make a DELETE request to /config/policy/\"{policyId}\"")
 def step_impl(context, policyId):
@@ -144,7 +150,8 @@ def step_impl(context, policyId):
     # Parse the response content and assert the data agreement details
     response_data = json.loads(context.response.content)
     assert response_data["objectId"] == policyId, "Revision object ID does not match policy ID"
-    assert response_data["schemaName"] == "policy", "Revision schema name does not match policy"
+    assert response_data["schemaName"] == "Policy", "Revision schema name does not match policy"
+    assert len(response_data["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when('I make a GET request to /service/data-agreement/\"{dataAgreementId}\"')
 def step_impl(context, dataAgreementId):
@@ -207,7 +214,8 @@ def step_impl(context):
     response_data = json.loads(context.response.content)
     assert response_data["consentRecord"]["dataAgreementId"] == context.data_agreement_id, "Data agreement Id does not match for consent record"
     assert response_data["consentRecord"]["individualId"] == context.individual_id, "Individual Id does not match for consent record"
-    assert response_data["revision"]["schemaName"] == "consentRecord", "Revision schema name does not match consentRecord"
+    assert response_data["revision"]["schemaName"] == "ConsentRecord", "Revision schema name does not match consentRecord"
+    assert len(response_data["revision"]["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when('I make a GET request to /service/individual/record/data-agreement/\"{dataAgreementId}\"')
 def step_impl(context,dataAgreementId):
@@ -246,7 +254,8 @@ def step_impl(context, consentRecordId):
     assert response_data["consentRecord"]["dataAgreementId"] == context.data_agreement_id, "Data agreement Id does not match for consent record"
     assert response_data["consentRecord"]["individualId"] == context.individual_id, "Individual Id does not match for consent record"
     assert response_data["revision"]["objectId"] == consentRecordId, "Revision object ID does not match consent record ID"
-    assert response_data["revision"]["schemaName"] == "consentRecord", "Revision schema name does not match consentRecord"
+    assert response_data["revision"]["schemaName"] == "ConsentRecord", "Revision schema name does not match consentRecord"
+    assert len(response_data["revision"]["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
 @when('I make a PUT request to /service/individual/record/consent-record/\"{consentRecordId}\"')
 def step_impl(context,consentRecordId,):
@@ -276,6 +285,7 @@ def step_impl(context, consentRecordId):
     response_data = json.loads(context.response.content)
     consent_records = response_data["consentRecords"]
     consent_record_id_found = False
+    assert len(consent_records) > 0, "Consent records is empty"
     for consent_record in consent_records:
         if consent_record.get("id") == consentRecordId:
             consent_record_id_found = True
@@ -308,7 +318,8 @@ def step_impl(context, dataAgreementId):
     # Parse the response content and assert the data agreement details
     response_data = json.loads(context.response.content)
     assert response_data["objectId"] == dataAgreementId, "Revision object ID does not match data agreement ID"
-    assert response_data["schemaName"] == "dataAgreement", "Revision schema name does not match data agreement"
+    assert response_data["schemaName"] == "DataAgreement", "Revision schema name does not match data agreement"
+    assert len(response_data["authorizedByOther"]) > 0, "Revision does not contain authorizedByOther"
 
     
 
