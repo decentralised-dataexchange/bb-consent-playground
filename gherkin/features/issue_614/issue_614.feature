@@ -25,7 +25,7 @@ Feature: Update consent record
   - Query params `dataAgreementId` and `individualId` are not supported in update consent record endpoint
 
   @positive
-  Scenario: Update consent record with current request body and without query params
+  Scenario Outline: Update consent record with current request body and without query params
     When I update consent record with id "<consentRecordId>", request body `{"optIn":false}` and without query params
     Then It returns a consent record and revision. Check if consent record contains optIn as false
 
@@ -34,7 +34,7 @@ Feature: Update consent record
       | 1               |
 
   @positive
-  Scenario: Update consent record with new request body and without query params
+  Scenario Outline: Update consent record with new request body and without query params
     When I update consent record with id "<consentRecordId>", request body `{"consentRecord":{"optIn":true}}` and without query params
     Then It returns a consent record and revision. Check if consent record contains optIn as true
 
