@@ -35,7 +35,7 @@ Feature: Update consent record
 
   @positive
   Scenario Outline: Update consent record with new request body and without query params
-    When I update consent record with id "<consentRecordId>", request body `{"consentRecord":{"optIn":true}}` and without query params
+    When I update consent record with id "<consentRecordId>", request body `{new request body}` and without query params
     Then It returns a consent record and revision. Check if consent record contains optIn as true
 
     Examples:
