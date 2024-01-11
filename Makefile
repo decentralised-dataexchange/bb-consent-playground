@@ -39,7 +39,7 @@ build-test: ## Build behave image
 	docker build --platform=linux/amd64 -t igrantio/bb-consent-test-runner:dev -f ./gherkin/Dockerfile ./gherkin
 
 run-test: ## Run BDD test
-	docker run --network=test_custom_network -v ./allure-results:/tests/allure-results:rw igrantio/bb-consent-test-runner:dev
+	sudo rm -rf allure-results && docker run --network=test_custom_network -v ./allure-results:/tests/allure-results:rw igrantio/bb-consent-test-runner:dev
 
 allure-generate: ## Generate Allure report
 	allure generate --clean
