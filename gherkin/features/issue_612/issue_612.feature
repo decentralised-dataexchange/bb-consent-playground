@@ -11,7 +11,7 @@ Feature: Revisions
   - Remove the following fields from `serializedSnapshot` -  `id`, `predecessorHash` and `predecessorSignature`
 
   @positive
-  Scenario: Data agreement revision
+  Scenario Outline: Data agreement revision
     When I list all revisions for a data agreement with id "<dataAgreementId>"
     Then It returns a list of revisions. Returned revision contains `authorizedByOther` field
     And Value of `schemaName` field is DataAgreement
@@ -22,7 +22,7 @@ Feature: Revisions
       | 1               |
 
   @positive
-  Scenario: Policy revision
+  Scenario Outline: Policy revision
     When I list all revisions for a policy with id "<policyId>"
     Then It returns a list of revisions. Returned revision contains `authorizedByOther` field
     And Value of `schemaName` field is Policy
@@ -33,11 +33,11 @@ Feature: Revisions
       | 1        |
   
   @positive
-  Scenario: Consent record revision
+  Scenario Outline: Consent record revision
     When I read latest consent record with id "<consentRecordId>" for verification
     Then It returns a consent record and a revision. Returned revision contains `authorizedByOther` field
     And Value of `schemaName` field is ConsentRecord
-    And `serializedSnapshot` doesn't contain `id`, `predecessorHash` and `predecessorSignature`
+    And The `serializedSnapshot` doesn't contain `id`, `predecessorHash` and `predecessorSignature`
 
     Examples:
       | consentRecordId |
@@ -47,7 +47,7 @@ Feature: Revisions
   Scenario: Auto-generated revision during create data agreement
     When I create a data agreement
     Then It returns the created data agreement and a revision. Returned revision contains `authorizedByOther` field
-    And Value of `schemaName` field is DataAgreement
-    And `serializedSnapshot` doesn't contain `id`, `predecessorHash` and `predecessorSignature`
+    And The Value of `schemaName` field is DataAgreement
+    And The `serializedSnapshot` doesn't contain `id`, `predecessorHash` and `predecessorSignature`
 
 
