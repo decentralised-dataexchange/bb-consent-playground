@@ -10,6 +10,7 @@ python = "^3.10"
 behave = "^1.2.6"
 requests = "^2.31.0"
 allure-behave = "^2.13.2"
+jwcrypto = "^1.5.1"
 
 
 [build-system]

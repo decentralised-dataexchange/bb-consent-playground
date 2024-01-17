@@ -513,6 +513,46 @@ def populate_policies(db):
     except Exception as e:
         print(e)
 
+def populate_signatures(db):
+    try:
+        signatures_collection = db["signatures"]
+
+        # Populate signatures collection
+        seed_year = 2012
+        index = 0
+
+        for signature in data.get("signatures", []):
+
+            # Save signatures to db
+            signatures_collection.insert_one(
+                {
+                    "_id": signature.get(
+                        "id", generate_object_id(seed_year + index, 1, 1)
+                    ),
+                    "payload": signature.get("payload", ""),
+                    "signature": signature.get("signature", ""),
+                    "verificationmethod": signature.get(
+                        "verificationMethod", ""
+                    ),
+                    "verificationpayload": signature.get("verificationPayload", ""),
+                    "verificationpayloadhash": signature.get(
+                        "verificationPayloadHash", ""
+                    ),
+                    "verificationartifact": signature.get("verificationArtifact", ""),
+                    "verificationsignedby": signature.get("verificationSignedBy", ""),
+                    "verificationsignedas": signature.get("verificationSignedAs", ""),
+                    "verificationjwsheader": signature.get("verificationJwsHeader", ""),
+                    "timestamp": signature.get("timestamp", ""),
+                    "signedwithoutobjectreference": signature.get("signedWithoutObjectReference", ""),
+                    "objecttype": signature.get("objectType", ""),
+                    "objectreference": signature.get("objectReference", ""),
+                }
+            )
+
+        index += 1
+    except Exception as e:
+        print(e)
+
 
 def update_organisation_id(db):
     try:
@@ -586,6 +626,8 @@ def main():
     populate_policies(db)
     # Populate revisions in mongodb
     populate_revisions(db=db)
+    # Populate signatures in mongodb
+    populate_signatures(db)
 
     # Update caddy with default access token headers for organisation admin and individual endpoints
     org_admin_token = login_organisation_admin(
