@@ -15,9 +15,9 @@ Feature: Review signature workflow in Consent Records
     And consent record contains `optIn` field as true
     And consent record contains `state` field as signed
     And revision contains `signedWithoutObjectId` field as true
-    And revision contains `objectId` field with empty value
+    And `serializedSnapshot` contains `objectId` field with empty value
     And signature container `signedWithoutObjectReference` field as true
-    And revision contains `objectReference` field with empty value
+    And signature contains `objectReference` field with empty value
     And signature is verified by recreating the payload from revision in response
 
     Examples:
@@ -35,9 +35,9 @@ Feature: Review signature workflow in Consent Records
     And consent record contains `optIn` field as true
     And consent record contains `state` field as signed
     And revision contains `signedWithoutObjectId` field as false
-    And revision contains `objectId` field with "<consentRecordId>"
+    And `serializedSnapshot` contains `objectId` field with "<consentRecordId>"
     And signature container `signedWithoutObjectReference` field as false
-    And revision contains `objectReference` field with "<revisionId>"
+    And signature contains `objectReference` field with "<revisionId>"
     And signature is verified by recreating the payload from revision in response
 
     Examples:
