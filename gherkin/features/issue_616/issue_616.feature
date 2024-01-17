@@ -16,13 +16,13 @@ Feature: Review signature workflow in Consent Records
     And consent record contains `state` field as signed
     And revision contains `signedWithoutObjectId` field as true
     And `serializedSnapshot` contains `objectId` field with empty value
-    And signature container `signedWithoutObjectReference` field as true
+    And signature contains `signedWithoutObjectReference` field as true
     And signature contains `objectReference` field with empty value
     And signature is verified by recreating the payload from revision in response
 
     Examples:
       | dataAgreementId |
-      | 1               |
+      | 4               |
 
   @positive
   Scenario Outline: Update consent record and add a new signature
@@ -36,13 +36,13 @@ Feature: Review signature workflow in Consent Records
     And consent record contains `state` field as signed
     And revision contains `signedWithoutObjectId` field as false
     And `serializedSnapshot` contains `objectId` field with "<consentRecordId>"
-    And signature container `signedWithoutObjectReference` field as false
+    And signature contains `signedWithoutObjectReference` field as false
     And signature contains `objectReference` field with "<revisionId>"
     And signature is verified by recreating the payload from revision in response
 
     Examples:
       | consentRecordId | revisionId |
-      | 1               | 1          |
+      |  2              | 1          |
 
     
   @positive
@@ -53,6 +53,6 @@ Feature: Review signature workflow in Consent Records
 
     Examples:
       | consentRecordId | revisionId |
-      | 1               | 1          |
+      | 3               | 2          |
 
 
