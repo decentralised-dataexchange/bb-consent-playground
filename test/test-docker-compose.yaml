@@ -73,7 +73,7 @@ services:
       - custom_network
 
   fixtures:
-    image: ${FIXTURES_IMAGE:-igrantio/bb-consent-fixtures:2023.12.2}
+    image: ${FIXTURES_IMAGE:-igrantio/bb-consent-fixtures:2024.1.1}
     container_name: fixtures
     volumes:
       - ./test-data.json:/app/data.json:ro

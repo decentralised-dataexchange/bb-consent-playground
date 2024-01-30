@@ -12,7 +12,7 @@ export POSTGRESQL_IMAGE ?= bitnami/postgresql:14.10.0
 export KEYCLOAK_IMAGE ?= docker.io/bitnami/keycloak:22.0.2-debian-11-r0
 export API_IMAGE ?= igrantio/bb-consent-api:2023.12.2
 export CADDY_IMAGE ?= igrantio/bb-consent-caddy:2023.12.2
-export FIXTURES_IMAGE ?= igrantio/bb-consent-fixtures:2023.12.2
+export FIXTURES_IMAGE ?= igrantio/bb-consent-fixtures:2024.1.1
 
 destroy: ## Delete all containers and volumes
 	@if [ -n "$$(docker container ls -aq)" ]; then \
@@ -74,10 +74,10 @@ run-dev-privacy-dashboard: ## Run admin dashboard for development branch tests
 	make -C temp/bb-consent-privacy-dashboard setup build run
 
 build-fixtures: ## Build fixtures docker image
-	docker build --platform=linux/amd64 -t igrantio/bb-consent-fixtures:2023.12.2 -f ./fixtures/Dockerfile ./fixtures
+	docker build --platform=linux/amd64 -t igrantio/bb-consent-fixtures:2024.1.1 -f ./fixtures/Dockerfile ./fixtures
 
 publish-fixtures: ## Publish fixtures docker image to docker hub
-	docker push igrantio/bb-consent-fixtures:2023.12.2
+	docker push igrantio/bb-consent-fixtures:2024.1.1
 
 run-fixtures: ## Load fixtures
 	docker-compose up fixtures
