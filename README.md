@@ -17,7 +17,7 @@
 
 ## About
 
-This repository hosts docker compose files for setting up playground for Consent BB.
+This repository hosts docker-compose files for setting up the playground for the Consent Building Block (BB) microservice.
 
 ## Requirements
 
@@ -29,15 +29,15 @@ This repository hosts docker compose files for setting up playground for Consent
 ## Steps to run playground
 
 1. Clone this repo using `git clone git@github.com:decentralised-dataexchange/bb-consent-playground.git`in your local machine, `cd` into the folder `bb-consent-playground`.
-2. Execute `make run`. This sets up the necessary dependencies and configurations for running playground.
+2. Execute `make run`. This sets up the necessary dependencies and configurations for running the playground.
 
 The other make commands could be used in case you wish to clean up your existing data. 
 * Execute `make down`. This stops the playground without deleting the data (volumes).
-* Execute `make clean`. This stops the playground along with deleting the data (volumes).
+* Execute `make clean`. This stops the playground and deletes the data (volumes).
 
 ***Note:** To delete any conflicting containers or volumes before running, execute `make destroy`. This will delete all the docker containers and volumes in your machine.*
 
-The servers are up and running. They are accessible at below addresses:
+The servers are up and running. They are accessible at the below addresses:
 
 | Name                   | Server address                   |
 | ---------------------- | -------------------------------- |
@@ -45,14 +45,14 @@ The servers are up and running. They are accessible at below addresses:
 | Admin dashboard        | https://dashboard.bb-consent.dev |
 | Privacy dashboard      | https://privacy.bb-consent.dev   |
 
-Once the services are up and running you can proceed ahead trying out the usecases either manually. You may also do the following:
+Once the services are up and running, you can proceed with trying out the use cases manually. You may also do the following:
 
-* Execute APIs toawrds the API server or [run the BB tests](#steps-to-run-bdd-tests) before release.
-* Get the data4diabtes and skatteverket data sharing demo environment up and running for manual demos. 
+* Execute APIs towards the API server or [run the BB tests](#steps-to-run-bdd-tests) before release.
+* Get the data4diabtes and skatteverket data-sharing demo environment up and running for manual demos. 
 
 ## Steps to run BDD tests
 
-This steps are to create a test environment to execute automated Behaviour Driven Development (BDD) tests on the consent BB API server. If you have run the playground earlier, please execute `make destroy` before proceeding with the steps below: 
+These steps create a test environment to execute automated Behaviour Driven Development (BDD) tests on the consent BB API server. If you have run the playground earlier, please execute `make destroy` before proceeding with the steps below: 
 
 1. Execute `make setup-test`. This sets up the necessary dependencies and configurations for running tests.
 2. Execute `make build-test`. This builds the docker image with BDD tests and configuration.
@@ -62,11 +62,11 @@ This steps are to create a test environment to execute automated Behaviour Drive
 - *Test environment can be setup by executing `./test/test-entrypoint.sh` file manually.*
 - *Test environment does not persist any of the data.*
 
-## Steps to set up the demo envioronment (COMING SOON)
+## Steps to set up the demo environment
 
 ### Setup the services
 
-Run the script provided in /demo folder. Once run, the servers are up and running. They are accessible at below addresses:
+Run the script provided in /demo folder. Once run, the servers are up and running. They are accessible at the addresses below:
 
 | Name                              | Server address                       |
 | ----------------------------------| ------------------------------------ |
@@ -78,7 +78,7 @@ Run the script provided in /demo folder. Once run, the servers are up and runnin
 
 ### Connect your mobile app to the running instance
 
-Contact support@igrant.io to get the data4diabtes reference app and get instructions on how to connect to the local service. 
+You can contact support @ igrant.io to get the data4diabtes reference app and instructions on connecting to the local service. 
 
 ## Contributing
 
